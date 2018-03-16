@@ -50,6 +50,6 @@ public class Client {
 
     }
     private void Compare() {
-        
+
     }
 }
