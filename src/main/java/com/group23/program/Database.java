@@ -4,7 +4,7 @@ import java.sql.*;
 import java.lang.reflect.*;
 
 /**
- *
+ * Class containing domain-agnostic database-operations.
  */
 public class Database {
 
@@ -67,21 +67,21 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
 
             // Iterate over all fields of the class
-            for (Field f : fields) {
+            for (int i = 0; i < fields.length; i++) {
 
                 // We need this to access private fields
-                f.setAccessible(true);
+                fields[i].setAccessible(true);
 
                 try {
-                    switch (f.getClass().getName()) {
+                    switch (fields[i].getClass().getName()) {
                         case "int":
-                            preparedStatement.setInt(i+1, (int)f.get(table));
+                            preparedStatement.setInt(i+1, (int)fields[i].get(table));
                             break;
                         case "double":
-                            preparedStatement.setDouble(i+1, (double)f.get(table));
+                            preparedStatement.setDouble(i+1, (double)fields[i].get(table));
                             break;
                         case "String":
-                            preparedStatement.setString(i+1, (String)f.get(table));
+                            preparedStatement.setString(i+1, (String)fields[i].get(table));
                             break;
                         default:
                             throw new IllegalAccessException("Unknown field type");
