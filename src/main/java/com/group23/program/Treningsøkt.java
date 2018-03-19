@@ -1,6 +1,6 @@
 package com.group23.program;
 
-public class TreningsÃ¸kt extends DatabaseTable{
+public class Treningsøkt extends DatabaseTable{
     public String dato;
     public int varighet;
     public String informasjon;

@@ -1,5 +1,5 @@
 package com.group23.program;
 
-public class Ã˜velsesGruppe extends DatabaseTable {
+public class ØvelsesGruppe extends DatabaseTable {
     String navn;
 }

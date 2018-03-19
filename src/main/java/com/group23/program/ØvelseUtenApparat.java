@@ -1,5 +1,5 @@
 package com.group23.program;
 
-public class Ã˜velseUtenApparat extends DatabaseTable{
+public class ØvelseUtenApparat extends DatabaseTable{
     String beskrivelse;
 }
