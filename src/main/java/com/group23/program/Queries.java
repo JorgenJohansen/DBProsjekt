@@ -36,14 +36,14 @@ public class Queries extends Database {
 		
 	}
 	//se over
-	public void setNotat(int id, int treningsøkt, String treningsformål, String opplevelse) {
+	public void setNotat(int id, int treningsokt, String treningsformaal, String opplevelse) {
 		try {
 			Connection conn = getConnection();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notat(id, treningsøkt, treningsformål, opplevelse) "
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notat(id, treningsokt, treningsformaal, opplevelse) "
 					+ "VALUES(?,?,?,?)");
 			stmt.setInt(1, id);
-			stmt.setInt(2, treningsøkt);
-			stmt.setString(3, treningsformål);
+			stmt.setInt(2, treningsokt);
+			stmt.setString(3, treningsformaal);
 			stmt.setString(4, opplevelse);
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -68,13 +68,13 @@ public class Queries extends Database {
 		}
 	}
 	//se over
-	public void setTreningsokt(int id, Date dato, int varighet, String informasjon, String personligForm, String prestasjon) {
+	public void setTreningsokt(int id, String dato, int varighet, String informasjon, String personligForm, String prestasjon) {
 		try {
 			Connection conn = getConnection();
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Treningsokt(id, dato, varighet, informasjon, personligForm, prestasjon) "
 					+ "VALUES(?,?,?,?,?,?)");
 			stmt.setInt(1, id);
-			stmt.setDate(2, dato);
+			stmt.setString(2, dato);
 			stmt.setInt(3, varighet);
 			stmt.setString(4, informasjon);
 			stmt.setString(5, personligForm);
@@ -124,11 +124,11 @@ public class Queries extends Database {
 		}
 	}
 	//se over
-	public void setOvelseUtenApparat(int øvelseID, String beskrivelse) {
+	public void setOvelseUtenApparat(int ovelseID, String beskrivelse) {
 		try {
 			Connection conn = getConnection();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO OvelseUtenApparat(øvelseID, beskrivelse) VALUES(?,?)");
-			stmt.setInt(1, øvelseID);
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO OvelseUtenApparat(ovelseID, beskrivelse) VALUES(?,?)");
+			stmt.setInt(1, ovelseID);
 			stmt.setString(2, beskrivelse);
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -136,13 +136,13 @@ public class Queries extends Database {
 		}
 	}
 	
+	
 	//Lager metoder for å hente ut informasjonen
 	public ArrayList<Apparat> getApparat() {
 		try {
-			ArrayList<Apparat> apparatListe = new ArrayList<>();
-			
 			Connection conn = getConnection();
-			String query = "SELECT id, navn, beskrivelse FROM Apparat";
+			ArrayList<Apparat> apparatListe = new ArrayList<>();
+			String query = "SELECT * FROM Apparat";
 			PreparedStatement getApparat = conn.prepareStatement(query);
 			ResultSet results = getApparat.executeQuery();
 			while(results.next()) {
@@ -161,34 +161,150 @@ public class Queries extends Database {
 		
 		return null;
 	}
-	
-	public String GetNotat() {
-		
+	//setNotat(int id, int treningsokt, String treningsformaal, String opplevelse)
+	public ArrayList<Notat> GetNotat() {
+		try {
+			Connection conn = getConnection();
+			ArrayList<Notat> notatListe = new ArrayList<>();
+			String query = "SELECT * FROM Notat";
+			PreparedStatement getNotat = conn.prepareStatement(query);
+			ResultSet results = getNotat.executeQuery();
+			while(results.next()) {
+				int id = results.getInt("id");
+				int treningsokt = results.getInt("treningsokt");
+				String treningsformaal = results.getString("treningsformaal");
+				String opplevelse = results.getString("opplevelse");
+				notatListe.add(new Notat(id, treningsokt,treningsformaal, opplevelse));
+			}
+			return notatListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
 		return null;
 	}
-	
-	public String GetResultat() {
-		return "";
+	//setResultat(int treningsokt, int ovelse, int kilo, int sett, int reps, String informasjon)
+	public ArrayList<Resultat> GetResultat() {
+		try {
+			Connection conn = getConnection();
+			ArrayList<Resultat> resultatListe = new ArrayList<>();
+			String query = "SELECT * FROM Resultat";
+			PreparedStatement getResultat = conn.prepareStatement(query);
+			ResultSet results = getResultat.executeQuery();
+			while(results.next()) {
+				int treningsokt = results.getInt("treningsokt");
+				int ovelse = results.getInt("ovelse");
+				int kilo = results.getInt("kilo");
+				int sett = results.getInt("sett");
+				int reps = results.getInt("reps");
+				String informasjon = results.getString("informasjon");
+				resultatListe.add(new Resultat(treningsokt, ovelse,kilo, sett, reps, informasjon));
+			}
+			return resultatListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
 	}
-	
-	public String GetTreningsøkt() {
-		return "";
+	//setTreningsokt(int id, String dato, int varighet, String informasjon, String personligForm, String prestasjon)
+	public ArrayList<Treningsokt> GetTreningsokt() {
+		try {
+			Connection conn = getConnection();
+			ArrayList<Treningsokt> treningsoktListe = new ArrayList<>();
+			String query = "SELECT * FROM Notat";
+			PreparedStatement getTreningsokt = conn.prepareStatement(query);
+			ResultSet results = getTreningsokt.executeQuery();
+			while(results.next()) {
+				int id = results.getInt("id");
+				String dato = results.getString("dato");
+				int varighet = results.getInt("varighet");
+				String informasjon = results.getString("informasjon");
+				String personligForm = results.getString("personligform");
+				String prestasjon = results.getString("prestasjon");
+				treningsoktListe.add(new Treningsokt(id, dato, varighet, informasjon, personligForm, prestasjon));
+			}
+			return treningsoktListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
 	}
-	
-	public String GetØvelse() {
-		return "";
+	//setOvelse(int id, String navn)
+	public ArrayList<Ovelse> GetOvelse() {
+		try {
+			Connection conn = getConnection();
+			ArrayList<Ovelse> ovelseListe = new ArrayList<>();
+			String query = "SELECT * FROM Ovelse";
+			PreparedStatement getOvelse = conn.prepareStatement(query);
+			ResultSet results = getOvelse.executeQuery();
+			while(results.next()) {
+				int id = results.getInt("id");
+				String navn = results.getString("navn");
+				ovelseListe.add(new Ovelse(id, navn));
+			}
+			return ovelseListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
 	}
-	
-	public String GetØvelsePåApparat() {
-		return "";
+	//setOvelsePaaApparat(int ovelseID, int apparat, String bruksinformasjon)
+	public ArrayList<OvelsePaaApparat> GetOvelsePåApparat() {
+		try {
+			Connection conn = getConnection();
+			ArrayList<OvelsePaaApparat> ovelsePaaApparatListe = new ArrayList<>();
+			String query = "SELECT * FROM Notat";
+			PreparedStatement getOvelsePaaApparat = conn.prepareStatement(query);
+			ResultSet results = getOvelsePaaApparat.executeQuery();
+			while(results.next()) {
+				int ovelseID = results.getInt("ovelseID");
+				int apparat = results.getInt("apparat");
+				String bruksinformasjon = results.getString("bruksinformasjon");
+				ovelsePaaApparatListe.add(new OvelsePaaApparat(ovelseID, apparat,bruksinformasjon));
+			}
+			return ovelsePaaApparatListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
 	}
-	
-	public String GetØvelsesGruppe() {
-		return "";
+	//setOvelsesGruppe(int id, String navn)
+	public ArrayList<OvelsesGruppe> GetOvelsesGruppe() {
+		try {
+			Connection conn = getConnection();
+			ArrayList<OvelsesGruppe> ovelsesGruppeListe = new ArrayList<>();
+			String query = "SELECT * FROM OvelsesGruppe";
+			PreparedStatement getNotat = conn.prepareStatement(query);
+			ResultSet results = getNotat.executeQuery();
+			while(results.next()) {
+				int id = results.getInt("id");
+				String navn = results.getString("navn");
+				ovelsesGruppeListe.add(new OvelsesGruppe(id, navn));
+			}
+			return ovelsesGruppeListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
 	}
-	
-	public String GetØvelseUtenApparat() {
-		return "";
+	//setOvelseUtenApparat(int ovelseID, String beskrivelse)
+	public ArrayList<OvelseUtenApparat> GetOvelseUtenApparat() {
+		try {
+			Connection conn = getConnection();
+			ArrayList<OvelseUtenApparat> ovelseUtenApparatListe = new ArrayList<>();
+			String query = "SELECT * FROM Notat";
+			PreparedStatement getOvelseUtenApparat = conn.prepareStatement(query);
+			ResultSet results = getOvelseUtenApparat.executeQuery();
+			while(results.next()) {
+				int ovelseID = results.getInt("ovelseID");
+				String beskrivelse = results.getString("beskrivelse");
+				String opplevelse = results.getString("opplevelse");
+				ovelseUtenApparatListe.add(new OvelseUtenApparat(ovelseID, beskrivelse));
+			}
+			return ovelseUtenApparatListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
 	}
 	
 	//Main metode for å kjøre koden
