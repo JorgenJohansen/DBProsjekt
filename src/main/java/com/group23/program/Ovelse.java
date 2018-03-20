@@ -1,8 +1,8 @@
 package com.group23.program;
 
-public class Ovelse {
-    int id;
-    String navn;
+public abstract class Ovelse {
+    public int id;
+    public String navn;
     
     public Ovelse(int id, String navn) {
     	this.id = id;
