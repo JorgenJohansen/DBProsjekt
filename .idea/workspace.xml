@@ -2,18 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8b6e4fc8-c409-48c4-a823-e80ac3827c40" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.classpath" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.project" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Client.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Queries.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/test2.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/testfil" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/Notat.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Notat.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/Queries.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Queries.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/Resultat.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Resultat.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/Treningsøkt.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Treningsøkt.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/Øvelse.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Øvelse.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelsePåApparat.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelsePåApparat.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelseUtenApparat.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelseUtenApparat.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelsesGruppe.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelsesGruppe.java" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,6 +54,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelseUtenApparat.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/Database.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/Client.java" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
       </list>
     </option>
   </component>
@@ -90,6 +88,11 @@
             <path>
               <item name="program" type="b2602c69:ProjectViewProjectNode" />
               <item name="jdbc" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="program" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jdbc" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="program" type="b2602c69:ProjectViewProjectNode" />
@@ -290,7 +293,7 @@
         <state relative-caret-position="2592">
           <caret line="145" column="62" lean-forward="false" selection-start-line="145" selection-start-column="62" selection-end-line="145" selection-end-column="62" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -308,7 +311,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -373,7 +376,7 @@
         <state relative-caret-position="839">
           <caret line="145" column="62" lean-forward="false" selection-start-line="145" selection-start-column="62" selection-end-line="145" selection-end-column="62" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -414,6 +417,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="41" lean-forward="false" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
           <folding />
         </state>
       </provider>

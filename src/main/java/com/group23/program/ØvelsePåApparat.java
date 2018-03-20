@@ -1,5 +1,5 @@
 package com.group23.program;
 
-public class √òvelseP√•Apparat extends √òvelse {
+public class ÿvelsePÂApparat extends ÿvelse {
     String bruksinformasjon;
 }

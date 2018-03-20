@@ -1,8 +1,8 @@
 package com.group23.program;
 
 public class Resultat {
-    public int treningsÃ¸kt;
-    public int Ã¸velse;
+    public int treningsøkt;
+    public int øvelse;
     public int kilo;
     public int sett;
     public int reps;
