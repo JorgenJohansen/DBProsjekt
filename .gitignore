@@ -1,0 +1,10 @@
+# Eclipse Metadata
+*/.settings/
+*/.classpath
+*/.project
+
+# IntelliJ Metadata
+*/.metadata/
+*/.idea/
+*.iml
+/target/
