@@ -259,7 +259,7 @@ public class Queries extends Database {
 				int ovelseID = results.getInt("ovelseID");
 				int apparat = results.getInt("apparat");
 				String bruksinformasjon = results.getString("bruksinformasjon");
-				ovelsePaaApparatListe.add(new OvelsePaaApparat(ovelseID, apparat,bruksinformasjon));
+				ovelsePaaApparatListe.add(new OvelsePaaApparat(ovelseID, bruksinformasjon));
 			}
 			return ovelsePaaApparatListe;
 		} catch (Exception e) {
@@ -311,9 +311,9 @@ public class Queries extends Database {
 	public static void main(String[] args) {
 		//FÂr ikke koblet til databasen
 		//Fikse SSL problem
-		Queries queries = new Queries("jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db", "didris_db", "1234");
+		Queries queries = new Queries("jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false", "didris_db", "1234");
 		System.out.println("Object made!");
-		//queries.setÿvelseUtenApparat(1, "Tar litt push-ups da vell");
+		queries.setOvelseUtenApparat(1, "Tar litt push-ups da vell");
 	}
 
 }
