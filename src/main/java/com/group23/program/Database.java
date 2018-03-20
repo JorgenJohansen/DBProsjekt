@@ -66,6 +66,8 @@ public class Database {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
 
+            preparedStatement.setInt(1, table.getId());
+
             // Iterate over all fields of the class
             for (int i = 0; i < fields.length; i++) {
 
@@ -75,13 +77,13 @@ public class Database {
                 try {
                     switch (fields[i].getClass().getName()) {
                         case "int":
-                            preparedStatement.setInt(i+1, (int)fields[i].get(table));
+                            preparedStatement.setInt(i+2, (int)fields[i].get(table));
                             break;
                         case "double":
-                            preparedStatement.setDouble(i+1, (double)fields[i].get(table));
+                            preparedStatement.setDouble(i+2, (double)fields[i].get(table));
                             break;
                         case "String":
-                            preparedStatement.setString(i+1, (String)fields[i].get(table));
+                            preparedStatement.setString(i+2, (String)fields[i].get(table));
                             break;
                         default:
                             throw new IllegalAccessException("Unknown field type");
@@ -127,7 +129,39 @@ public class Database {
 
         System.out.println("QUERY: " +queryString);
 
-        executePreparedStatement(table, queryString);
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
+
+            // Iterate over all fields of the class
+            for (int i = 0; i < fields.length; i++) {
+
+                // We need this to access private fields
+                fields[i].setAccessible(true);
+
+                try {
+                    switch (fields[i].getClass().getName()) {
+                        case "int":
+                            preparedStatement.setInt(i+1, (int)fields[i].get(table));
+                            break;
+                        case "double":
+                            preparedStatement.setDouble(i+1, (double)fields[i].get(table));
+                            break;
+                        case "String":
+                            preparedStatement.setString(i+1, (String)fields[i].get(table));
+                            break;
+                        default:
+                            throw new IllegalAccessException("Unknown field type");
+
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+            preparedStatement.executeUpdate();
+            System.out.println("Insertion complete.");
+        } catch (SQLException e) {
+            throw e;
+        }
 
     }
 
@@ -161,7 +195,42 @@ public class Database {
 
         System.out.println("QUERY: " +queryString);
 
-        executePreparedStatement(table, queryString);
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
+
+            // Iterate over all fields of the class
+            for (int i = 0; i < fields.length; i++) {
+
+                // We need this to access private fields
+                fields[i].setAccessible(true);
+
+                try {
+                    switch (fields[i].getClass().getName()) {
+                        case "int":
+                            preparedStatement.setInt(i+1, (int)fields[i].get(table));
+                            break;
+                        case "double":
+                            preparedStatement.setDouble(i+1, (double)fields[i].get(table));
+                            break;
+                        case "String":
+                            preparedStatement.setString(i+1, (String)fields[i].get(table));
+                            break;
+                        default:
+                            throw new IllegalAccessException("Unknown field type");
+
+                    }
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            preparedStatement.setInt(fields.length, table.getId());
+
+            preparedStatement.executeUpdate();
+            System.out.println("Update complete.");
+        } catch (SQLException e) {
+            throw e;
+        }
 
     }
 
@@ -185,17 +254,10 @@ public class Database {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
 
-            // We need this to access private fields, we also know that the id-field is the first one
-            fields[0].setAccessible(true);
-
-            try {
-                preparedStatement.setString(1, (String)fields[0].get(table));
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
+            preparedStatement.setInt(1, table.getId());
 
             preparedStatement.executeUpdate();
-            System.out.println("Insertion complete.");
+            System.out.println("Delete complete.");
         } catch (SQLException e) {
             throw e;
         }

@@ -1,6 +1,6 @@
 package com.group23.program;
 
-public abstract class Øvelse {
+public abstract class Ovelse {
     int id;
     String navn;
 }

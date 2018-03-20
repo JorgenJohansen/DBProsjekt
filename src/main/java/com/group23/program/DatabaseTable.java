@@ -7,6 +7,10 @@ public abstract class DatabaseTable {
      */
     private int id;
 
+    public int getId() {
+        return id;
+    }
+
     /**
      * Default constructor for unitialized DatabaseTable
      */
