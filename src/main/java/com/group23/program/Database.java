@@ -42,7 +42,7 @@ public class Database {
      * @return a new connection to the database
      * @throws SQLException if driver is missing
      */
-    private Connection getConnection() throws SQLException {
+    protected Connection getConnection() throws SQLException {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(db_URI, db_user, db_pw);

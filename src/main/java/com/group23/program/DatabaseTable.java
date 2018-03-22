@@ -5,7 +5,7 @@ public abstract class DatabaseTable {
     /**
      * id = 0 is treated as unitialized
      */
-    private int id;
+    protected int id;
 
     public int getId() {
         return id;
