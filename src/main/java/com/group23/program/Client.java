@@ -179,13 +179,15 @@ public class Client {
                 retval += "\nCompare two results";
                 retval += "\ncompare-<excercise id 1>-<session id 1>-<exercise id 2>-<session id 2>";
                 retval += "\n";
-                retval += "\n";
-                retval += "\n";
+                retval += "\nExit";
+                retval += "\nexit";
+                retval += "\nquit";
+                retval += "\nq";
 
                 System.out.println(retval);
             }
 
-            if(s.equals("exit")) {
+            if(s.equals("exit") || s.equals("quit") ||s.equals("q")) {
                 System.exit(0);
             }
 
