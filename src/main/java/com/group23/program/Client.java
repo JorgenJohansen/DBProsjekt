@@ -285,6 +285,8 @@ public class Client {
     //TODO
     private void Find(int id) {
         System.out.println("Find\n" + id);
+        ArrayList<String> results = queries.getOvelseFromOvelsesGruppe(id);
+        System.out.println(results);
     }
 
     //Sammenligner to resultater
