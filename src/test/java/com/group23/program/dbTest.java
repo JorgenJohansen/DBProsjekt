@@ -31,7 +31,7 @@ public class dbTest extends TestCase  {
     public void testTreningsOkt() throws SQLException {
         Queries db = new Queries(db_addr, db_user,db_pw);
 
-        Treningsokt tr = new Treningsokt("2017:03:17", 3, "informasjon", "god form", "presentasjon");
+        Treningsokt tr = new Treningsokt("2017:03:17", 3, "informasjon", 1, 1);
 
         int id = db.create(tr);
     }
