@@ -164,4 +164,29 @@ public class Queries extends Database {
 		return list;
 	}
 
+	/**
+	 * Generer en liste med navn på ovelser i ovelsesGruppe
+	 * @param ovelsesGruppeID er ID til ovelsesGruppe
+	 * @return en liste med navn på ovelser
+	 */
+	public ArrayList<String> getOvelseFromOvelsesGruppe(int ovelsesGruppeID) {
+		try (Connection connection = getConnection()) {
+			ArrayList<String> list = new ArrayList<>();
+			String query = "SELECT * " + 
+					"from OvelseIGruppe " + 
+					"JOIN Ovelse ON Ovelse.id=OvelseIGruppe.ovelsesgruppe " + 
+					"WHERE OvelseIGruppe.ovelse = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, ovelsesGruppeID);
+			ResultSet results = preparedStatement.executeQuery();
+			while(results.next()) {
+				String navn = results.getString("navn");
+				list.add(navn);
+			}
+			return list;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
 }
