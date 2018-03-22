@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b6e4fc8-c409-48c4-a823-e80ac3827c40" name="Default" comment="" />
+    <list default="true" id="8b6e4fc8-c409-48c4-a823-e80ac3827c40" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/group23/program/Client.java" afterPath="$PROJECT_DIR$/src/main/java/com/group23/program/Client.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,6 +22,8 @@
               <caret line="179" column="62" lean-forward="false" selection-start-line="179" selection-start-column="62" selection-end-line="179" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <marker date="1521626170419" expanded="true" signature="3788:3806" ph=" INSERT statement (PERSON)" />
+                <marker date="1521626170419" expanded="true" signature="8686:8697" ph=" DELETE statement" />
               </folding>
             </state>
           </provider>
@@ -27,9 +32,48 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-220">
-              <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="2465">
+              <caret line="145" column="59" lean-forward="false" selection-start-line="145" selection-start-column="59" selection-end-line="145" selection-end-column="59" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#7426#7427#0" expanded="true" />
+                <element signature="e#7493#7494#0" expanded="true" />
+                <element signature="e#7885#7886#0" expanded="true" />
+                <element signature="e#7933#7934#0" expanded="true" />
+                <element signature="e#7979#7980#0" expanded="true" />
+                <element signature="e#8045#8046#0" expanded="true" />
+                <element signature="e#8084#8085#0" expanded="true" />
+                <element signature="e#8135#8136#0" expanded="true" />
+                <element signature="e#8167#8168#0" expanded="true" />
+                <element signature="e#8216#8217#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Queries.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Queries.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+              <folding>
+                <marker date="1521626170430" expanded="true" signature="803:857" ph=" INSERT statement (APPARAT)" />
+                <marker date="1521626170430" expanded="true" signature="1286:1375" ph=" INSERT statement (NOTAT)" />
+                <marker date="1521626170430" expanded="true" signature="1818:1920" ph=" INSERT statement (RESULTAT)" />
+                <marker date="1521626170430" expanded="true" signature="2424:2537" ph=" INSERT statement (TRENINGSOKT)" />
+                <marker date="1521626170430" expanded="true" signature="3095:3135" ph=" INSERT statement (OVELSE)" />
+                <marker date="1521626170430" expanded="true" signature="3482:3510" ph=" INSERT statement (OVELSEPAAAPPARAT)" />
+                <marker date="1521626170430" expanded="true" signature="3930:3977" ph=" INSERT statement (OVELSESGRUPPE)" />
+                <marker date="1521626170430" expanded="true" signature="4307:4371" ph=" INSERT statement (OVELSEUTENAPPARAT)" />
+                <marker date="1521626170430" expanded="true" signature="4749:4770" ph=" SELECT statement (APPARAT)" />
+                <marker date="1521626170430" expanded="true" signature="5475:5494" ph=" SELECT statement (NOTAT)" />
+                <marker date="1521626170430" expanded="true" signature="6297:6319" ph=" SELECT statement (RESULTAT)" />
+                <marker date="1521626170430" expanded="true" signature="7235:7254" ph=" SELECT statement (NOTAT)" />
+                <marker date="1521626170430" expanded="true" signature="8128:8148" ph=" SELECT statement (OVELSE)" />
+                <marker date="1521626170430" expanded="true" signature="8801:8820" ph=" SELECT statement (NOTAT)" />
+                <marker date="1521626170430" expanded="true" signature="9577:9604" ph=" SELECT statement (OVELSESGRUPPE)" />
+                <marker date="1521626170430" expanded="true" signature="10264:10283" ph=" SELECT statement (NOTAT)" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,6 +86,11 @@
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>split</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,7 +112,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelseGruppe.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelsesGruppe.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/ØvelseUtenApparat.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/group23/program/Client.java" />
         <option value="$PROJECT_DIR$/.idea/vcs.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/DatabaseTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/Database.java" />
@@ -73,12 +121,13 @@
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/Ovelse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/OvelseUtenApparat.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/group23/program/OvelsePåApparat.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/group23/program/Client.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="238" />
-    <option name="y" value="49" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="211" />
+    <option name="y" value="47" />
     <option name="width" value="1318" />
     <option name="height" value="805" />
   </component>
@@ -145,6 +194,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -168,16 +220,16 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="MAIN_CLASS_NAME" value="com.group23.program.Client" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
+      <module name="program" />
       <envs />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -258,7 +310,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="238" y="49" width="1318" height="805" extended-state="1" />
+    <frame x="211" y="47" width="1318" height="805" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -276,6 +328,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -333,6 +386,8 @@
           <caret line="145" column="62" lean-forward="false" selection-start-line="145" selection-start-column="62" selection-end-line="145" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1521626170419" expanded="true" signature="3788:3806" ph=" INSERT statement (PERSON)" />
+            <marker date="1521626170419" expanded="true" signature="8686:8697" ph=" DELETE statement" />
           </folding>
         </state>
       </provider>
@@ -341,7 +396,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7426#7427#0" expanded="true" />
+            <element signature="e#7493#7494#0" expanded="true" />
+            <element signature="e#7885#7886#0" expanded="true" />
+            <element signature="e#7933#7934#0" expanded="true" />
+            <element signature="e#7979#7980#0" expanded="true" />
+            <element signature="e#8045#8046#0" expanded="true" />
+            <element signature="e#8084#8085#0" expanded="true" />
+            <element signature="e#8135#8136#0" expanded="true" />
+            <element signature="e#8167#8168#0" expanded="true" />
+            <element signature="e#8216#8217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -351,6 +418,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1521626170419" expanded="true" signature="3788:3806" ph=" INSERT statement (PERSON)" />
+            <marker date="1521626170419" expanded="true" signature="8686:8697" ph=" DELETE statement" />
           </folding>
         </state>
       </provider>
@@ -428,6 +497,8 @@
           <caret line="145" column="62" lean-forward="false" selection-start-line="145" selection-start-column="62" selection-end-line="145" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1521626170419" expanded="true" signature="3788:3806" ph=" INSERT statement (PERSON)" />
+            <marker date="1521626170419" expanded="true" signature="8686:8697" ph=" DELETE statement" />
           </folding>
         </state>
       </provider>
@@ -436,7 +507,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-424">
           <caret line="51" column="86" lean-forward="false" selection-start-line="51" selection-start-column="65" selection-end-line="51" selection-end-column="86" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7426#7427#0" expanded="true" />
+            <element signature="e#7493#7494#0" expanded="true" />
+            <element signature="e#7885#7886#0" expanded="true" />
+            <element signature="e#7933#7934#0" expanded="true" />
+            <element signature="e#7979#7980#0" expanded="true" />
+            <element signature="e#8045#8046#0" expanded="true" />
+            <element signature="e#8084#8085#0" expanded="true" />
+            <element signature="e#8135#8136#0" expanded="true" />
+            <element signature="e#8167#8168#0" expanded="true" />
+            <element signature="e#8216#8217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -446,6 +529,8 @@
           <caret line="145" column="62" lean-forward="false" selection-start-line="145" selection-start-column="62" selection-end-line="145" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1521626170419" expanded="true" signature="3788:3806" ph=" INSERT statement (PERSON)" />
+            <marker date="1521626170419" expanded="true" signature="8686:8697" ph=" DELETE statement" />
           </folding>
         </state>
       </provider>
@@ -454,7 +539,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="936">
           <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7426#7427#0" expanded="true" />
+            <element signature="e#7493#7494#0" expanded="true" />
+            <element signature="e#7885#7886#0" expanded="true" />
+            <element signature="e#7933#7934#0" expanded="true" />
+            <element signature="e#7979#7980#0" expanded="true" />
+            <element signature="e#8045#8046#0" expanded="true" />
+            <element signature="e#8084#8085#0" expanded="true" />
+            <element signature="e#8135#8136#0" expanded="true" />
+            <element signature="e#8167#8168#0" expanded="true" />
+            <element signature="e#8216#8217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -464,6 +561,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <marker date="1521626170419" expanded="true" signature="3788:3806" ph=" INSERT statement (PERSON)" />
+            <marker date="1521626170419" expanded="true" signature="8686:8697" ph=" DELETE statement" />
           </folding>
         </state>
       </provider>
@@ -524,18 +623,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-220">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Notat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="26" lean-forward="false" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -543,6 +635,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -569,6 +662,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -579,20 +673,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3043">
-          <caret line="179" column="62" lean-forward="false" selection-start-line="179" selection-start-column="62" selection-end-line="179" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/group23/program/dbTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -600,6 +687,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -607,31 +695,153 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="23" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/OvelsePaApparat.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Queries.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="37" column="73" lean-forward="false" selection-start-line="37" selection-start-column="64" selection-end-line="37" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/OvelsePaApparat.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/OvelseUtenApparat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="14" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3043">
+          <caret line="179" column="62" lean-forward="false" selection-start-line="179" selection-start-column="62" selection-end-line="179" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1521626170419" expanded="true" signature="3788:3806" ph=" INSERT statement (PERSON)" />
+            <marker date="1521626170419" expanded="true" signature="8686:8697" ph=" DELETE statement" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Queries.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
+          <folding>
+            <marker date="1521626170430" expanded="true" signature="803:857" ph=" INSERT statement (APPARAT)" />
+            <marker date="1521626170430" expanded="true" signature="1286:1375" ph=" INSERT statement (NOTAT)" />
+            <marker date="1521626170430" expanded="true" signature="1818:1920" ph=" INSERT statement (RESULTAT)" />
+            <marker date="1521626170430" expanded="true" signature="2424:2537" ph=" INSERT statement (TRENINGSOKT)" />
+            <marker date="1521626170430" expanded="true" signature="3095:3135" ph=" INSERT statement (OVELSE)" />
+            <marker date="1521626170430" expanded="true" signature="3482:3510" ph=" INSERT statement (OVELSEPAAAPPARAT)" />
+            <marker date="1521626170430" expanded="true" signature="3930:3977" ph=" INSERT statement (OVELSESGRUPPE)" />
+            <marker date="1521626170430" expanded="true" signature="4307:4371" ph=" INSERT statement (OVELSEUTENAPPARAT)" />
+            <marker date="1521626170430" expanded="true" signature="4749:4770" ph=" SELECT statement (APPARAT)" />
+            <marker date="1521626170430" expanded="true" signature="5475:5494" ph=" SELECT statement (NOTAT)" />
+            <marker date="1521626170430" expanded="true" signature="6297:6319" ph=" SELECT statement (RESULTAT)" />
+            <marker date="1521626170430" expanded="true" signature="7235:7254" ph=" SELECT statement (NOTAT)" />
+            <marker date="1521626170430" expanded="true" signature="8128:8148" ph=" SELECT statement (OVELSE)" />
+            <marker date="1521626170430" expanded="true" signature="8801:8820" ph=" SELECT statement (NOTAT)" />
+            <marker date="1521626170430" expanded="true" signature="9577:9604" ph=" SELECT statement (OVELSESGRUPPE)" />
+            <marker date="1521626170430" expanded="true" signature="10264:10283" ph=" SELECT statement (NOTAT)" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/group23/program/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2465">
+          <caret line="145" column="59" lean-forward="false" selection-start-line="145" selection-start-column="59" selection-end-line="145" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7426#7427#0" expanded="true" />
+            <element signature="e#7493#7494#0" expanded="true" />
+            <element signature="e#7885#7886#0" expanded="true" />
+            <element signature="e#7933#7934#0" expanded="true" />
+            <element signature="e#7979#7980#0" expanded="true" />
+            <element signature="e#8045#8046#0" expanded="true" />
+            <element signature="e#8084#8085#0" expanded="true" />
+            <element signature="e#8135#8136#0" expanded="true" />
+            <element signature="e#8167#8168#0" expanded="true" />
+            <element signature="e#8216#8217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>program</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
         <settings>
           <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
