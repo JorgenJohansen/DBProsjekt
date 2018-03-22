@@ -1,9 +1,12 @@
 package com.group23.program;
 
+import javafx.util.Pair;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 import java.util.Date;
@@ -11,9 +14,9 @@ import java.util.Date;
 
 public class Client {
     public static  void main(String[] args) {
-        String address = "";
-        String username = "";
-        String pass = "";
+        String address = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_3?ssl=false&useSSL=false";
+        String username = "didris_db";
+        String pass = "1234";
         Scanner scan = new Scanner(System.in);
         Client client = new Client(address, username, pass);
 
@@ -158,12 +161,12 @@ public class Client {
                 retval += "\nRegister new device/exercise/session";
                 retval += "\nDevice:   reg-dev-<name>-<description>";
                 retval += "\nExercise: reg-ex-<name>-<onDevice(true/false)>-<info/description>";
-                retval += "\nSession:  reg-se-<time (format dd.mm.yyyy hh:mm:ss)>-<duration (format hh:mm)>-<info>-<form>-<feat>";
+                retval += "\nSession:  reg-se-<time (format yyyy.mm.dd hh:mm:ss)>-<duration (format hh:mm)>-<info>-<form>-<feat>";
                 retval += "\n";
                 retval += "\nInfo about <n> last sessions";
                 retval += "\ninfo-<n>";
                 retval += "\n";
-                retval += "\nSee results between <startTime(format dd.MM.yyyy HH:mm:ss)> and <endTime(format dd.MM.yyyy HH:mm:ss)>";
+                retval += "\nSee results between <startTime(format yyyy.mm.dd hh:mm:ss)> and <endTime(format yyyy.mm.dd hh:mm:ss)>";
                 retval += "\nlog-<startTime>-<endTime>";
                 retval += "\n";
                 retval += "\nCreate excercise groups";
@@ -205,17 +208,47 @@ public class Client {
         System.out.println("RegSession\n" + date + "\n" + duration + "\n" + info + "\n" + pForm + "\n" + feat);
     }
 
+    //Prints information about n last sessions
     private void Info(int n) {
-        System.out.println("Info\n" + n);
+        try {
+            ArrayList<Pair<Treningsokt, Notat>> tre = queries.GetTreningsOktMedNotat();
+
+            for(int i = 0; i < n; i++) {
+                Pair<Treningsokt, Notat> pair = tre.get(i);
+                Treningsokt okt = pair.getKey();
+                Notat notat = pair.getValue();
+
+                System.out.println("ID: " + okt.id);
+                System.out.println("Dato: " + okt.dato);
+                System.out.println("Varighet: " + okt.varighet);
+                System.out.println("Info: " + okt.informasjon);
+                System.out.println("Personlig form: " + okt.personligForm);
+                System.out.println("Prestasjon: " + okt.prestasjon);
+
+                if(notat==null) {
+                    System.out.println("Notat ikke lagt til.");
+                }
+                else {
+                    System.out.println("NotatID: " + notat.id);
+                    System.out.println("Treningsformål:" + notat.treningsformaal);
+                    System.out.println("Opplevelse:" + notat.opplevelse);
+                }
+                System.out.println();
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            System.out.println("Error in getting last n sessions");
+        }
     }
 
     private void Log(String start, String stop) {
         System.out.println("Info\n" + start + "\n" + stop);
     }
+
     private void Create(String name) {
         System.out.println("Create\n" + name);
     }
-
     private void Find(int id) {
         System.out.println("Find\n" + id);
     }
