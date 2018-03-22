@@ -8,22 +8,23 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import javax.management.Query;
-
+/*
 public class Queries extends Database {
+
 
 	public Queries(String address, String username, String password) {
 		super(address, username, password);
 		// TODO Auto-generated constructor stub
 	}
 	
-	//Lager metoder for å fylle inn informasjon i databasen
-	//Metode for å fylle inn i Apparat tabellen med id, navn og beskrivelse
+	//Lager metoder for ï¿½ fylle inn informasjon i databasen
+	//Metode for ï¿½ fylle inn i Apparat tabellen med id, navn og beskrivelse
 	public static void setApparat(Integer id,String navn, String beskrivelse) {
 		try {
 			//kobler til databasen
 			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false";
 			Connection conn = DriverManager.getConnection(url, "didris_db", "1234");
-			//lager et statement for å fylle inn informasjon
+			//lager et statement for ï¿½ fylle inn informasjon
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Apparat(id,navn,beskrivelse) VALUES(?,?,?)");
 			//setter tilstanden
 			stmt.setInt(1, id);
@@ -37,15 +38,15 @@ public class Queries extends Database {
 		
 	}
 	//se over
-	public static void setNotat(int id, int treningsøkt, String treningsformål, String opplevelse) {
+	public static void setNotat(int id, int treningsï¿½kt, String treningsformï¿½l, String opplevelse) {
 		try {
 			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false";
 			Connection conn = DriverManager.getConnection(url, "didris_db", "1234");
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notat(id, treningsøkt, treningsformål, opplevelse) "
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notat(id, treningsï¿½kt, treningsformï¿½l, opplevelse) "
 					+ "VALUES(?,?,?,?)");
 			stmt.setInt(1, id);
-			stmt.setInt(2, treningsøkt);
-			stmt.setString(3, treningsformål);
+			stmt.setInt(2, treningsï¿½kt);
+			stmt.setString(3, treningsformï¿½l);
 			stmt.setString(4, opplevelse);
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -130,12 +131,12 @@ public class Queries extends Database {
 		}
 	}
 	//se over
-	public static void setOvelseUtenApparat(int øvelseID, String beskrivelse) {
+	public static void setOvelseUtenApparat(int ï¿½velseID, String beskrivelse) {
 		try {
 			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false";
 			Connection conn = DriverManager.getConnection(url, "didris_db", "1234");
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO OvelseUtenApparat(øvelseID, beskrivelse) VALUES(?,?)");
-			stmt.setInt(1, øvelseID);
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO OvelseUtenApparat(ï¿½velseID, beskrivelse) VALUES(?,?)");
+			stmt.setInt(1, ï¿½velseID);
 			stmt.setString(2, beskrivelse);
 			stmt.executeUpdate();
 		} catch (Exception e) {
@@ -143,7 +144,7 @@ public class Queries extends Database {
 		}
 	}
 	
-	//Lager metoder for å hente ut informasjonen
+	//Lager metoder for ï¿½ hente ut informasjonen
 	public Apparat getApparat() {
 		Apparat apparat = new Apparat();
 		try {
@@ -154,9 +155,9 @@ public class Queries extends Database {
 			ResultSet app1 = getApparat.executeQuery();
 			
 			
-			/*while(apparat.next()) {
-				array.add(apparat.getString("navn, beskrivelse"));
-			}*/
+			//while(apparat.next()) {
+			//	array.add(apparat.getString("navn, beskrivelse"));
+			//}
 			
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
@@ -174,33 +175,34 @@ public class Queries extends Database {
 		return "";
 	}
 	
-	public String GetTreningsøkt() {
+	public String GetTreningsï¿½kt() {
 		return "";
 	}
 	
-	public String GetØvelse() {
+	public String Getï¿½velse() {
 		return "";
 	}
 	
-	public String GetØvelsePåApparat() {
+	public String Getï¿½velsePï¿½Apparat() {
 		return "";
 	}
 	
-	public String GetØvelsesGruppe() {
+	public String Getï¿½velsesGruppe() {
 		return "";
 	}
 	
-	public String GetØvelseUtenApparat() {
+	public String Getï¿½velseUtenApparat() {
 		return "";
 	}
 	
-	//Main metode for å kjøre koden
+	//Main metode for ï¿½ kjï¿½re koden
 	public static void main(String[] args) {
-		//Får ikke koblet til databasen
+		//Fï¿½r ikke koblet til databasen
 		//Fikse SSL problem
 		Queries queries = new Queries("jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db", "didris_db", "1234");
 		System.out.println("Object made!");
-		//queries.setØvelseUtenApparat(1, "Tar litt push-ups da vell");
+		//queries.setï¿½velseUtenApparat(1, "Tar litt push-ups da vell");
 	}
 
 }
+*/
