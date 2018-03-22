@@ -253,7 +253,28 @@ public class Client {
         System.out.println("Find\n" + id);
     }
 
+    //Sammenligner to resultater
     private void Compare(int exID1, int seID1, int exID2, int seID2) {
-        System.out.println("Compare\n" + exID1 + "\n" + seID1 + "\n" + exID2 + "\n" + seID2);
+        Resultat res1 = queries.GetResultat(exID1, seID1);
+        Resultat res2 = queries.GetResultat(exID2, seID2);
+
+        System.out.println("Treningsokt 1: "  + res1.treningsokt);
+        System.out.println("Treningsokt 2: "  + res2.treningsokt);
+        System.out.println();
+        System.out.println("Øvelse 1: " + res1.ovelse);
+        System.out.println("Øvelse 2: " + res2.ovelse);
+        System.out.println();
+        System.out.println("Kilo 1: " + res1.kilo);
+        System.out.println("Kilo 2: " + res2.kilo);
+        System.out.println();
+        System.out.println("Sett 1: " + res1.sett);
+        System.out.println("Sett 2: " + res2.sett);
+        System.out.println();
+        System.out.println("Reps 1: " + res1.reps);
+        System.out.println("Reps 2: " + res2.reps);
+        System.out.println();
+        System.out.println("Info 1: " + res1.informasjon);
+        System.out.println("Info 2: " + res2.informasjon);
+        System.out.println();
     }
 }

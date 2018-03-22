@@ -63,50 +63,22 @@ public class Queries extends Database {
 		return list;
 	}
 
-
-    /**
-     * Genererer en komplett liste over alle øvelser uten apparat i databasen
-     * @return liste over øvelser uten apparat
-     * @throws SQLException hvis spørring har syntaxfeil eller ikke kan koble til databasne
-     */
-	public ArrayList<OvelseUtenApparat> GetOvelseUtenApparat() throws SQLException {
-		ArrayList<OvelseUtenApparat> list = new ArrayList<>();
-
-		try (Connection connection = getConnection()) {
-
-			String query = "SELECT id, navn, beskrivelse " +
-					"FROM OvelsePaaApparat " +
-					"INNER JOIN Ovelse ON Ovelse.id = OvelseUtenApparat.ovelseId";
-
-			PreparedStatement preparedStatement = connection.prepareStatement(query);
-
-			ResultSet results = preparedStatement.executeQuery();
-
-			while (results.next()) {
-				int id = results.getInt("id");
-				String navn = results.getString("navn");
-				String beskrivelse = results.getString("beskrivelse");
-
-				list.add(new OvelseUtenApparat(id, navn, beskrivelse));
-			}
-
-		} catch (SQLException e) {
-			throw e;
-		}
-		return list;
-
-	}
-	
+//
 	/**
 	 * Generer en komplett liste av alle resultat i databasen
 	 * @return liste over resultat
 	 */
-	public ArrayList<Resultat> GetResultat() {
+	public Resultat GetResultat(int EID, int SID) {
 		try (Connection connection = getConnection()) {
 			
 			ArrayList<Resultat> resultatListe = new ArrayList<>();
-			String query = "SELECT * FROM Resultat";
+			String query = "SELECT * FROM Resultat WHERE Resultat.ovelse = ? AND Resultat.treningsokt = ?";
+
 			PreparedStatement getResultat = connection.prepareStatement(query);
+
+			getResultat.setInt(1, EID);
+			getResultat.setInt(2, SID);
+
 			ResultSet results = getResultat.executeQuery();
 			while(results.next()) {
 				int treningsokt = results.getInt("treningsokt");
@@ -115,9 +87,8 @@ public class Queries extends Database {
 				int sett = results.getInt("sett");
 				int reps = results.getInt("reps");
 				String informasjon = results.getString("informasjon");
-				resultatListe.add(new Resultat(treningsokt, ovelse,kilo, sett, reps, informasjon));
+				return new Resultat(treningsokt, ovelse,kilo, sett, reps, informasjon);
 			}
-			return resultatListe;
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -126,8 +97,8 @@ public class Queries extends Database {
 
 	/**
 	 * Generer en liste ut ifra et intervall
-	 * @param Start setter en start p� intervallet
-	 * @param Slutt setter en slutt p� intervallet
+	 * @param Start setter en start på intervallet
+	 * @param Slutt setter en slutt på intervallet
 	 * @return en liste med resultater i et satt intervall
 	 * @throws SQLException
 	 */
@@ -135,10 +106,10 @@ public class Queries extends Database {
 		ArrayList<Resultat> list = new ArrayList<>(); 
 	
 		try (Connection connection = getConnection()) {
-			String query = "SELECT Resultat.treningsokt,Resultat.ovelse,Resultat.kilo,Resultat.sett,Resultat.reps,Resultat.informasjon"+
+			String query = "SELECT Resultat.treningsokt, Resultat.ovelse, Resultat.kilo, Resultat.sett, Resultat.reps, Resultat.informasjon"+
 					"FROM Resultat"+
-					"join Treningsokt on Resultat.treningsokt=Treningsokt.id"+
-					"WHERE dato BETWEEN ? AND ? ovelse";
+					"JOIN Treningsokt ON Resultat.treningsokt = Treningsokt.id" +
+					"WHERE dato BETWEEN ? AND ?";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			
