@@ -20,6 +20,8 @@ public class Client {
         Scanner scan = new Scanner(System.in);
         Client client = new Client(address, username, pass);
 
+        System.out.println("Type -h for help");
+
         while(true) {
             String s = scan.nextLine();
             String cmd;
@@ -154,8 +156,7 @@ public class Client {
                 continue;
             }
 
-            cmd = "help";
-            if(s == cmd) {
+            if(s.equals("-h") || s.equals("help")) {
                 String retval = "";
                 retval += "Help page";
                 retval += "\nRegister new device/exercise/session";
@@ -184,8 +185,7 @@ public class Client {
                 System.out.println(retval);
             }
 
-            cmd = "exit";
-            if(s == cmd) {
+            if(s.equals("exit")) {
                 System.exit(0);
             }
 
@@ -199,6 +199,7 @@ public class Client {
     }
 
     private void RegDev(String name, String desc) {
+
         System.out.println("RegDev\n" + name + "\n" + desc);
     }
     private void RegEx(String name, boolean app, String info) {
@@ -237,13 +238,29 @@ public class Client {
             }
         }
         catch (Exception e) {
-            System.out.println(e);
             System.out.println("Error in getting last n sessions");
         }
     }
 
     private void Log(String start, String stop) {
-        System.out.println("Info\n" + start + "\n" + stop);
+        try {
+            ArrayList<Resultat> results = queries.resultatTidsInterval(start, stop);
+            for(Resultat res : results) {
+                System.out.println("Treningsokt: "  + res.treningsokt);
+                System.out.println("Øvelse: " + res.ovelse);
+                System.out.println("Kilo: " + res.kilo);
+                System.out.println("Sett: " + res.sett);
+                System.out.println("Reps: " + res.reps);
+                System.out.println("Info: " + res.informasjon);
+                System.out.println();
+            }
+            if(results.isEmpty()) {
+                System.out.println("No results found");
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error in getting results");
+        }
     }
 
     private void Create(String name) {
