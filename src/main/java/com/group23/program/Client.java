@@ -11,8 +11,11 @@ import java.util.Date;
 
 public class Client {
     public static  void main(String[] args) {
+        String address = "";
+        String username = "";
+        String pass = "";
         Scanner scan = new Scanner(System.in);
-        Client client = new Client();
+        Client client = new Client(address, username, pass);
 
         while(true) {
             String s = scan.nextLine();
@@ -187,6 +190,11 @@ public class Client {
         }
     }
 
+    Queries queries;
+    public Client(String address, String username, String pass) {
+        queries = new Queries(address, username, pass);
+    }
+
     private void RegDev(String name, String desc) {
         System.out.println("RegDev\n" + name + "\n" + desc);
     }
@@ -200,15 +208,18 @@ public class Client {
     private void Info(int n) {
         System.out.println("Info\n" + n);
     }
+
     private void Log(String start, String stop) {
         System.out.println("Info\n" + start + "\n" + stop);
     }
     private void Create(String name) {
         System.out.println("Create\n" + name);
     }
+
     private void Find(int id) {
         System.out.println("Find\n" + id);
     }
+
     private void Compare(int exID1, int seID1, int exID2, int seID2) {
         System.out.println("Compare\n" + exID1 + "\n" + seID1 + "\n" + exID2 + "\n" + seID2);
     }
