@@ -51,7 +51,7 @@ public class Queries extends Database {
      * @return liste over treningsøkter og tilhørende notater
      * @throws SQLException hvis spørring har syntaxfeil eller ikke kan koble til databasne
      */
-	public ArrayList<Pair<Treningsokt, Notat>> GetTreningsOktMedNotat() throws SQLException {
+	public ArrayList<Pair<Treningsokt, Notat>> .idea/workspace.xml() throws SQLException {
 		ArrayList<Pair<Treningsokt, Notat>> list = new ArrayList<>();
 
 		try (Connection connection = getConnection()) {
@@ -71,8 +71,8 @@ public class Queries extends Database {
 				String dato = results.getString("dato");
 				int varighet = results.getInt("varighet");
 				String informasjon = results.getString("informasjon");
-				String personligForm = results.getString("personligForm");
-				String presentasjon = results.getString("prestasjon");
+				int personligForm = results.getInt("personligForm");
+				int presentasjon = results.getInt("prestasjon");
 				Treningsokt okt = new Treningsokt(TID, dato, varighet, informasjon, personligForm, presentasjon);
 
 				int NID = results.getInt("TID");

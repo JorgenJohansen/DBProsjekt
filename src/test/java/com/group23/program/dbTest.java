@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class dbTest extends TestCase  {
 
-    private static String db_addr = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_3?ssl=false";
+    private static String db_addr = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_3?ssl=false&useSSL=false";
     private static String db_user = "didris_db";
     private static String db_pw = "1234";
 
@@ -27,12 +27,12 @@ public class dbTest extends TestCase  {
 //            System.out.println(e.navn);
 //        }
 //    }
-//
-//    public void testTreningsOkt() throws SQLException {
-//        Queries db = new Queries(db_addr, db_user,db_pw);
-//
-//        Treningsokt tr = new Treningsokt("2017:03:17", 3, "informasjon", "god form", "presentasjon");
-//
-//        int id = db.create(tr);
-//    }
+
+    public void testTreningsOkt() throws SQLException {
+        Queries db = new Queries(db_addr, db_user,db_pw);
+
+        Treningsokt tr = new Treningsokt("2017:03:17", 3, "informasjon", 1, 1);
+
+        int id = db.create(tr);
+    }
 }

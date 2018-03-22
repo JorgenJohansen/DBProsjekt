@@ -4,23 +4,27 @@ public class Treningsokt extends DatabaseTable{
     public String dato;
     public int varighet;
     public String informasjon;
-    public String personligForm;
-    public String prestasjon;
+    public int personligForm;
+    public int prestasjon;
 
-    public Treningsokt(int id, String dato, int varighet, String informasjon, String personligForm, String presentasjon) {
+    public Treningsokt(String dato, int varighet, String informasjon, int personligForm, int presentasjon) {
+        this.dato = dato;
+        this.varighet = varighet;
+        this.informasjon = informasjon;
+        this.personligForm = personligForm;
+        this.prestasjon = prestasjon;
+
+    }
+
+    public Treningsokt(int id, String dato, int varighet, String informasjon, int personligForm, int prestasjon) {
         this.id = id;
         this.dato = dato;
         this.varighet = varighet;
         this.informasjon = informasjon;
         this.personligForm = personligForm;
-        this.prestasjon = presentasjon;
+        this.prestasjon = prestasjon;
+
     }
 
-    public Treningsokt(String dato, int varighet, String informasjon, String personligForm, String presentasjon) {
-        this.dato = dato;
-        this.varighet = varighet;
-        this.informasjon = informasjon;
-        this.personligForm = personligForm;
-        this.prestasjon = presentasjon;
-    }
+    
 }
