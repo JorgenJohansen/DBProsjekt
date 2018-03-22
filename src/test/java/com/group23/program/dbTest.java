@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class dbTest extends TestCase  {
 
-    private static String db_addr = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_3?ssl=false";
+    private static String db_addr = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_3?ssl=false&useSSL=false";
     private static String db_user = "didris_db";
     private static String db_pw = "1234";
 
