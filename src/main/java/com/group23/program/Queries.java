@@ -97,6 +97,10 @@ public class Queries extends Database {
 
 	}
 	
+	/**
+	 * Generer en komplett liste av alle resultat i databasen
+	 * @return liste over resultat
+	 */
 	public ArrayList<Resultat> GetResultat() {
 		try (Connection connection = getConnection()) {
 			
@@ -120,6 +124,44 @@ public class Queries extends Database {
 		return null;
 	}
 
+	/**
+	 * Generer en liste ut ifra et intervall
+	 * @param Start setter en start på intervallet
+	 * @param Slutt setter en slutt på intervallet
+	 * @return en liste med resultater i et satt intervall
+	 * @throws SQLException
+	 */
+	public ArrayList<Resultat> resultatTidsInterval(String start, String slutt) throws SQLException {
+		ArrayList<Resultat> list = new ArrayList<>(); 
+	
+		try (Connection connection = getConnection()) {
+			String query = "SELECT Resultat.treningsokt,Resultat.ovelse,Resultat.kilo,Resultat.sett,Resultat.reps,Resultat.informasjon"+
+					"FROM Resultat"+
+					"join Treningsokt on Resultat.treningsokt=Treningsokt.id"+
+					"WHERE dato BETWEEN ? AND ? ovelse";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, start);
+			preparedStatement.setString(2, slutt);
 
+			ResultSet results = preparedStatement.executeQuery();
+
+			while (results.next()) {
+				int treningsokt = results.getInt("treningsokt");
+				int ovelse = results.getInt("ovelse"); 
+				int kilo = results.getInt("kilo"); 
+				int sett = results.getInt("sett");  
+				int reps = results.getInt("reps"); 
+				String informasjon = results.getString("informasjon");
+
+				list.add(new Resultat(treningsokt, ovelse, kilo, sett, reps, informasjon));
+			}
+
+		} catch (SQLException e) {
+			throw e;
+		}
+		return list;
+	}
 
 }
