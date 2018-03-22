@@ -194,17 +194,29 @@ public class Client {
     }
 
     Queries queries;
+    Database db;
     public Client(String address, String username, String pass) {
         queries = new Queries(address, username, pass);
+        db = new Database(address, username, pass);
     }
 
+    //Sette inn nytt apparat med navn og beskrivelse
     private void RegDev(String name, String desc) {
-
-        System.out.println("RegDev\n" + name + "\n" + desc);
+        Apparat dev = new Apparat(name, desc);
+        try {
+            db.create(dev);
+        }
+        catch (Exception e) {
+            System.out.println("Error in creating device");
+        }
     }
+
+    //TODO
     private void RegEx(String name, boolean app, String info) {
         System.out.println("RegEx\n" + name + "\n" + app + "\n" + info);
     }
+
+    //TODO
     private void RegSession(String date, int duration, String info, int pForm, int feat) {
         System.out.println("RegSession\n" + date + "\n" + duration + "\n" + info + "\n" + pForm + "\n" + feat);
     }
@@ -242,6 +254,7 @@ public class Client {
         }
     }
 
+    //Finner alle resultater mellom to tidspunkter
     private void Log(String start, String stop) {
         try {
             ArrayList<Resultat> results = queries.resultatTidsInterval(start, stop);
@@ -263,9 +276,11 @@ public class Client {
         }
     }
 
+    //TODO
     private void Create(String name) {
         System.out.println("Create\n" + name);
     }
+    //TODO
     private void Find(int id) {
         System.out.println("Find\n" + id);
     }

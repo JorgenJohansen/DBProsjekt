@@ -136,9 +136,9 @@ public class Queries extends Database {
 	}
 
 	/**
-	 * Generer en liste med navn på ovelser i ovelsesGruppe
+	 * Generer en liste med navn pÃ¥ ovelser i ovelsesGruppe
 	 * @param ovelsesGruppeID er ID til ovelsesGruppe
-	 * @return en liste med navn på ovelser
+	 * @return en liste med navn pÃ¥ ovelser
 	 */
 	public ArrayList<String> getOvelseFromOvelsesGruppe(int ovelsesGruppeID) {
 		try (Connection connection = getConnection()) {
