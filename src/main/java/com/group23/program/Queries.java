@@ -106,10 +106,10 @@ public class Queries extends Database {
 		ArrayList<Resultat> list = new ArrayList<>(); 
 	
 		try (Connection connection = getConnection()) {
-			String query = "SELECT Resultat.treningsokt, Resultat.ovelse, Resultat.kilo, Resultat.sett, Resultat.reps, Resultat.informasjon"+
-					"FROM Resultat"+
-					"JOIN Treningsokt ON Resultat.treningsokt = Treningsokt.id" +
-					"WHERE dato BETWEEN ? AND ?";
+			String query = "SELECT Resultat.treningsokt, Resultat.ovelse, Resultat.kilo, Resultat.sett, Resultat.reps, Resultat.informasjon "+
+					"FROM Resultat "+
+					"JOIN Treningsokt ON Resultat.treningsokt = Treningsokt.id " +
+					"WHERE dato BETWEEN ? AND ? ";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			
