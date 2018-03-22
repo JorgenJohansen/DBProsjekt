@@ -1,249 +1,148 @@
 package com.group23.program;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 import javax.management.Query;
-/*
+
 public class Queries extends Database {
 
 
 	public Queries(String address, String username, String password) {
 		super(address, username, password);
-		// TODO Auto-generated constructor stub
 	}
 
-	//Lager metoder for � fylle inn informasjon i databasen
-	//Metode for � fylle inn i Apparat tabellen med id, navn og beskrivelse
-	public static void setApparat(Integer id,String navn, String beskrivelse) {
-		try {
-			//kobler til databasen
-			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false";
-			Connection conn = DriverManager.getConnection(url, "didris_db", "1234");
-			//lager et statement for � fylle inn informasjon
 
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Apparat(id,navn,beskrivelse) VALUES(?,?,?)");
-			//setter tilstanden
-			stmt.setInt(1, id);
-			stmt.setString(2, navn);
-			stmt.setString(3, beskrivelse);
-			//oppdaterer
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		
-	}
-	//se over
-	public static void setNotat(int id, int trenings�kt, String treningsform�l, String opplevelse) {
-		try {
-			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false";
-			Connection conn = DriverManager.getConnection(url, "didris_db", "1234");
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Notat(id, trenings�kt, treningsform�l, opplevelse) "
-					+ "VALUES(?,?,?,?)");
-			stmt.setInt(1, id);
-			stmt.setInt(2, trenings�kt);
-			stmt.setString(3, treningsform�l);
-			stmt.setString(4, opplevelse);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	//se over
-	public void setResultat(int treningsokt, int ovelse, int kilo, int sett, int reps, String informasjon) {
-		try {
-			Connection conn = getConnection();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Resultat(treningsokt, ovelse, kilo, sett, reps, informasjon) "
-					+ "VALUES(?,?,?,?,?,?)");
-			stmt.setInt(1, treningsokt);
-			stmt.setInt(2, ovelse);
-			stmt.setInt(3, kilo);
-			stmt.setInt(4, sett);
-			stmt.setInt(5, reps);
-			stmt.setString(6, informasjon);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	//se over
-	public void setTreningsokt(int id, String dato, int varighet, String informasjon, String personligForm, String prestasjon) {
-		try {
-			Connection conn = getConnection();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Treningsokt(id, dato, varighet, informasjon, personligForm, prestasjon) "
-					+ "VALUES(?,?,?,?,?,?)");
-			stmt.setInt(1, id);
-			stmt.setString(2, dato);
-			stmt.setInt(3, varighet);
-			stmt.setString(4, informasjon);
-			stmt.setString(5, personligForm);
-			stmt.setString(6, prestasjon);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	//se over
-	public void setOvelse(int id, String navn) {
-		try {
-			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false";
-			Connection conn = DriverManager.getConnection(url, "didris_db", "1234");
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO Ovelse(id, navn) VALUES(?,?)");
-			stmt.setInt(1, id);
-			stmt.setString(2, navn);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	//se over
-	public void setOvelsePaaApparat(int ovelseID, int apparat, String bruksinformasjon) {
-		try {
-			Connection conn = getConnection();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO OvelsePaaApparat(0velseID, apparat, bruksinformasjon) "
-					+ "VALUES(?,?,?)");
-			stmt.setInt(1, ovelseID);
-			stmt.setInt(2, apparat);
-			stmt.setString(3, bruksinformasjon);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	//se over
-	public void setOvelsesGruppe(int id, String navn) {
-		try {
-			Connection conn = getConnection();
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO OvelsesGruppe(id, navn) VALUES(?,?)");
-			stmt.setInt(1, id);
-			stmt.setString(2, navn);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
-	//se over
-	public static void setOvelseUtenApparat(int �velseID, String beskrivelse) {
-		try {
-			String url = "jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false";
-			Connection conn = DriverManager.getConnection(url, "didris_db", "1234");
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO OvelseUtenApparat(�velseID, beskrivelse) VALUES(?,?)");
-			stmt.setInt(1, �velseID);
+    /**
+     * Genererer en komplett liste over alle treningsapparater i databasen
+     * @return liste over treningsapparater
+     * @throws SQLException hvis spørring har syntaxfeil eller ikke kan koble til databasne
+     */
+	public ArrayList<Apparat> getApparat() throws SQLException {
+		ArrayList<Apparat> list = new ArrayList<>();
 
-			stmt.setString(2, beskrivelse);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-	}
+		try (Connection connection = getConnection()) {
 
-	//Lager metoder for � hente ut informasjonen
-	public Apparat getApparat() {
-		Apparat apparat = new Apparat();
-		try {
-			Connection conn = getConnection();
-			ArrayList<Apparat> apparatListe = new ArrayList<>();
-			String query = "SELECT * FROM Apparat";
-			PreparedStatement getApparat = conn.prepareStatement(query);
-			ResultSet results = getApparat.executeQuery();
-			while(results.next()) {
+			String query = "SELECT * FROM apparat";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+			ResultSet results = preparedStatement.executeQuery();
+
+			while (results.next()) {
 				int id = results.getInt("id");
 				String navn = results.getString("navn");
 				String beskrivelse = results.getString("beskrivelse");
-				apparatListe.add(new Apparat(id, navn,beskrivelse));
+
+				list.add(new Apparat(id, navn, beskrivelse));
 			}
-			return apparatListe;
-			
 
-			//while(apparat.next()) {
-			//	array.add(apparat.getString("navn, beskrivelse"));
-			//}
-
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+		} catch (SQLException e) {
+			throw e;
 		}
-		
-		
-		return null;
+		return list;
 	}
-	//setNotat(int id, int treningsokt, String treningsformaal, String opplevelse)
-	public ArrayList<Notat> GetNotat() {
-		try {
-			Connection conn = getConnection();
-			ArrayList<Notat> notatListe = new ArrayList<>();
-			String query = "SELECT * FROM Notat";
-			PreparedStatement getNotat = conn.prepareStatement(query);
-			ResultSet results = getNotat.executeQuery();
-			while(results.next()) {
+
+
+    /**
+     * Genererer en komplett liste over alle treningsøkter i databasen
+     * @return liste over treningsøkter
+     * @throws SQLException hvis spørring har syntaxfeil eller ikke kan koble til databasne
+     */
+	public ArrayList<Treningsokt> GetTreningsOkt() throws SQLException {
+		ArrayList<Treningsokt> list = new ArrayList<>();
+
+		try (Connection connection = getConnection()) {
+
+			String query = "SELECT * FROM treningsokt";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+			ResultSet results = preparedStatement.executeQuery();
+
+			while (results.next()) {
 				int id = results.getInt("id");
-				int treningsokt = results.getInt("treningsokt");
-				String treningsformaal = results.getString("treningsformaal");
-				String opplevelse = results.getString("opplevelse");
-				notatListe.add(new Notat(id, treningsokt,treningsformaal, opplevelse));
-			}
-			return notatListe;
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return null;
-	}
-	//setResultat(int treningsokt, int ovelse, int kilo, int sett, int reps, String informasjon)
-	public ArrayList<Resultat> GetResultat() {
-		try {
-			Connection conn = getConnection();
-			ArrayList<Resultat> resultatListe = new ArrayList<>();
-			String query = "SELECT * FROM Resultat";
-			PreparedStatement getResultat = conn.prepareStatement(query);
-			ResultSet results = getResultat.executeQuery();
-			while(results.next()) {
-				int treningsokt = results.getInt("treningsokt");
-				int ovelse = results.getInt("ovelse");
-				int kilo = results.getInt("kilo");
-				int sett = results.getInt("sett");
-				int reps = results.getInt("reps");
+				String dato = results.getString("dato");
+				int varighet = results.getInt("varighet");
 				String informasjon = results.getString("informasjon");
-				resultatListe.add(new Resultat(treningsokt, ovelse,kilo, sett, reps, informasjon));
+				String personligForm = results.getString("personligForm");
+				String presentasjon = results.getString("presentasjon");
+
+				list.add(new Treningsokt(id, dato, varighet, informasjon, personligForm, presentasjon));
 			}
-			return resultatListe;
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+
+		} catch (SQLException e) {
+			throw e;
 		}
-		return null;
+		return list;
 	}
-	public String GetTrenings�kt() {
-		return "";
+
+
+    /**
+     * Genererer en komplett liste over alle øvelser på treningsapparater i databasen
+     * @return liste over øvelse på treningsapparater
+     * @throws SQLException hvis spørring har syntaxfeil eller ikke kan koble til databasne
+     */
+	public ArrayList<OvelsePaaApparat> GetOvelsePaApparat() throws SQLException {
+		ArrayList<OvelsePaaApparat> list = new ArrayList<>();
+
+		try (Connection connection = getConnection()) {
+
+			String query = "SELECT id, navn, beskrivelse " +
+					"FROM OvelsePaaApparat " +
+					"INNER JOIN Ovelse ON Ovelse.id = OvelsePaaApparat.ovelseId";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+			ResultSet results = preparedStatement.executeQuery();
+
+			while (results.next()) {
+				int id = results.getInt("id");
+				String navn = results.getString("navn");
+				String beskrivelse = results.getString("beskrivelse");
+
+				list.add(new OvelsePaaApparat(id, navn, beskrivelse));
+			}
+
+		} catch (SQLException e) {
+			throw e;
+		}
+		return list;
 	}
-	
-	public String Get�velse() {
-		return "";
-	}
-	
-	public String Get�velseP�Apparat() {
-		return "";
-	}
-	
-	public String Get�velsesGruppe() {
-		return "";
-	}
-	
-	public String Get�velseUtenApparat() {
-		return "";
+
+
+    /**
+     * Genererer en komplett liste over alle øvelser uten apparat i databasen
+     * @return liste over øvelser uten apparat
+     * @throws SQLException hvis spørring har syntaxfeil eller ikke kan koble til databasne
+     */
+	public ArrayList<OvelseUtenApparat> GetOvelseUtenApparat() throws SQLException {
+		ArrayList<OvelseUtenApparat> list = new ArrayList<>();
+
+		try (Connection connection = getConnection()) {
+
+			String query = "SELECT id, navn, beskrivelse " +
+					"FROM OvelsePaaApparat " +
+					"INNER JOIN Ovelse ON Ovelse.id = OvelseUtenApparat.ovelseId";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+			ResultSet results = preparedStatement.executeQuery();
+
+			while (results.next()) {
+				int id = results.getInt("id");
+				String navn = results.getString("navn");
+				String beskrivelse = results.getString("beskrivelse");
+
+				list.add(new OvelseUtenApparat(id, navn, beskrivelse));
+			}
+
+		} catch (SQLException e) {
+			throw e;
+		}
+		return list;
 
 	}
-	
-	//Main metode for � kj�re koden
-	public static void main(String[] args) {
-		//F�r ikke koblet til databasen
-		//Fikse SSL problem
-		Queries queries = new Queries("jdbc:mysql://mysql.stud.ntnu.no:3306/didris_db?useSSL=false", "didris_db", "1234");
-		System.out.println("Object made!");
-		//queries.set�velseUtenApparat(1, "Tar litt push-ups da vell");
-	}
+
 
 }
-*/

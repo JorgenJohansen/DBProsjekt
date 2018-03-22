@@ -1,15 +1,10 @@
 package com.group23.program;
 
-public class OvelseUtenApparat extends DatabaseTable{
+public class OvelseUtenApparat extends Ovelse {
     String beskrivelse;
-    int ovelseID;
     
-    public OvelseUtenApparat(String beskrivelse) {
-    	this.beskrivelse = beskrivelse;
-    }
-    
-    public OvelseUtenApparat(int ovelseID, String beskrivelse) {
-    	this.ovelseID = ovelseID;
+    public OvelseUtenApparat(int ovelseID, String navn, String beskrivelse) {
+        super(ovelseID, navn);
     	this.beskrivelse = beskrivelse;
     }
 }
