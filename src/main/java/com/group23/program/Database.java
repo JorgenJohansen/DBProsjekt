@@ -53,75 +53,26 @@ public class Database {
     }
 
     /**
-     * Executes any prepared statement
-     * @param table is an object containing a row in a database
-     * @param queryString string-statement for query
-     * @throws SQLException if the query is invalid
-     */
-    public void executePreparedStatement(DatabaseTable table, String queryString) throws SQLException {
-
-        Field[] fields = table.getClass().getDeclaredFields();
-
-        // Make a connection to the database
-        try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
-
-            preparedStatement.setInt(1, table.getId());
-
-            // Iterate over all fields of the class
-            for (int i = 0; i < fields.length; i++) {
-
-                // We need this to access private fields
-                fields[i].setAccessible(true);
-
-                try {
-                    switch (fields[i].getClass().getName()) {
-                        case "int":
-                            preparedStatement.setInt(i+2, (int)fields[i].get(table));
-                            break;
-                        case "double":
-                            preparedStatement.setDouble(i+2, (double)fields[i].get(table));
-                            break;
-                        case "String":
-                            preparedStatement.setString(i+2, (String)fields[i].get(table));
-                            break;
-                        default:
-                            throw new IllegalAccessException("Unknown field type");
-
-                    }
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-            preparedStatement.executeUpdate();
-            System.out.println("Insertion complete.");
-        } catch (SQLException e) {
-            throw e;
-        }
-    }
-
-
-    /**
      * Creates a table on the database
      * @param table is an object containing a row in a database
      * @throws SQLException if the query is malformed
      */
-    public void create(DatabaseTable table) throws SQLException {
+    public int create(DatabaseTable table) throws SQLException {
 
         // Retrieve information from the class to generate query
-        String className = table.getClass().getName();
+        String className = table.getClass().getSimpleName();
         Field[] fields = table.getClass().getDeclaredFields();
 
         // Build string for prepared statement
-        String queryString = "INSERT INTO Person ";
+        String queryString = "INSERT INTO ";
         queryString += className;
-        queryString += " (";
-        for (int i = 1; i < fields.length; i++) {
-            queryString += fields[i].getName() + ",";
+        queryString += "(";
+        for (Field f : fields) {
+            queryString += f.getName() + ",";
         }
         queryString = Util.stripTrailingComma(queryString);
-        queryString += ") VAULES(";
-        for (int i = 1; i < fields.length; i++) {
+        queryString += ") VALUES(";
+        for (Field f : fields) {
             queryString += "?,";
         }
         queryString = Util.stripTrailingComma(queryString);
@@ -130,7 +81,7 @@ public class Database {
         System.out.println("QUERY: " +queryString);
 
         try (Connection connection = getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS)) {
 
             // Iterate over all fields of the class
             for (int i = 0; i < fields.length; i++) {
@@ -139,7 +90,7 @@ public class Database {
                 fields[i].setAccessible(true);
 
                 try {
-                    switch (fields[i].getClass().getName()) {
+                    switch (fields[i].getType().getSimpleName()) {
                         case "int":
                             preparedStatement.setInt(i+1, (int)fields[i].get(table));
                             break;
@@ -150,7 +101,7 @@ public class Database {
                             preparedStatement.setString(i+1, (String)fields[i].get(table));
                             break;
                         default:
-                            throw new IllegalAccessException("Unknown field type");
+                            throw new IllegalAccessException("Unknown field type: " + fields[i].getType().getSimpleName() + " " + fields[i].get(table));
 
                     }
                 } catch (IllegalAccessException e) {
@@ -158,7 +109,17 @@ public class Database {
                 }
             }
             preparedStatement.executeUpdate();
-            System.out.println("Insertion complete.");
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                System.out.println("Insertion complete.");
+                return generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Unable to insert into table");
+            }
+
+
         } catch (SQLException e) {
             throw e;
         }
@@ -173,19 +134,19 @@ public class Database {
     public void update(DatabaseTable table) throws SQLException {
 
         // Retrieve information from the class to generate query
-        String className = table.getClass().getName();
+        String className = table.getClass().getSimpleName();
         Field[] fields = table.getClass().getDeclaredFields();
 
         // Build string for prepared statement
         String queryString = "UPDATE ";//Person SET Navn = ? WHERE Pnr = ?";
         queryString += className;
-        queryString += " Person SET";
-        queryString += " (";
+        queryString += " SET";
+        queryString += "(";
         for (Field f : fields) {
             queryString += f.getName() + ",";
         }
         queryString = Util.stripTrailingComma(queryString);
-        queryString += ") VAULES(";
+        queryString += ") VALUES(";
         for (Field f : fields) {
             queryString += "?,";
         }
@@ -205,7 +166,7 @@ public class Database {
                 fields[i].setAccessible(true);
 
                 try {
-                    switch (fields[i].getClass().getName()) {
+                    switch (fields[i].getType().getSimpleName()) {
                         case "int":
                             preparedStatement.setInt(i+1, (int)fields[i].get(table));
                             break;
@@ -242,7 +203,7 @@ public class Database {
     public void delete(DatabaseTable table) throws SQLException {
 
         // Retrieve information from the class to generate query
-        String className = table.getClass().getName();
+        String className = table.getClass().getSimpleName();
         Field[] fields = table.getClass().getDeclaredFields();
 
         String queryString = "DELETE FROM ";

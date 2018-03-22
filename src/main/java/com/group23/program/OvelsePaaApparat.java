@@ -1,9 +1,11 @@
 package com.group23.program;
 
 public class OvelsePaaApparat extends Ovelse {
-	String beskrivelse;
-    public OvelsePaaApparat(int ovelseID, String navn, String beskrivelse) {
+	int apparat;
+	String bruksinformasjon;
+    public OvelsePaaApparat(int ovelseID, String navn, int apparat, String bruksinformasjon) {
 		super(ovelseID, navn);
-		this.beskrivelse = beskrivelse;
+		this.apparat = apparat;
+		this.bruksinformasjon = bruksinformasjon;
 	}
 }
