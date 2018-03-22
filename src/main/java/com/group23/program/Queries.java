@@ -51,7 +51,7 @@ public class Queries extends Database {
      * @return liste over treningsøkter og tilhørende notater
      * @throws SQLException hvis spørring har syntaxfeil eller ikke kan koble til databasne
      */
-	public ArrayList<Pair<Treningsokt, Notat>> .idea/workspace.xml() throws SQLException {
+	public ArrayList<Pair<Treningsokt, Notat>> GetTreningsOktMedNotat() throws SQLException {
 		ArrayList<Pair<Treningsokt, Notat>> list = new ArrayList<>();
 
 		try (Connection connection = getConnection()) {
