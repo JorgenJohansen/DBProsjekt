@@ -20,11 +20,12 @@ public class Database {
      */
     public Database(String address, String username, String password) {
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //try {
+        //    Class.forName("com.mysql.jdbc.Driver");
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        //}
+
 
         db_URI = address;
         db_user = username;
