@@ -23,7 +23,7 @@ public class Queries extends Database {
 
 		try (Connection connection = getConnection()) {
 
-			String query = "SELECT * FROM apparat";
+			String query = "SELECT * FROM Apparat";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -98,10 +98,11 @@ public class Queries extends Database {
 
 			while (results.next()) {
 				int id = results.getInt("id");
+				int apparat = results.getInt("apparat");
 				String navn = results.getString("navn");
-				String beskrivelse = results.getString("beskrivelse");
+				String bruksinformasjon = results.getString("bruksinformasjon");
 
-				list.add(new OvelsePaaApparat(id, navn, beskrivelse));
+				list.add(new OvelsePaaApparat(id, apparat, navn, bruksinformasjon));
 			}
 
 		} catch (SQLException e) {
