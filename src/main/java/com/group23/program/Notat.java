@@ -5,15 +5,15 @@ public class Notat extends DatabaseTable {
     public String treningsformaal;
     public String opplevelse;
     
-    public Notat(int treningsøkt, String treningsformaal, String opplevelse) {
-    	this.treningsokt = treningsøkt;
+    public Notat(int treningsokt, String treningsformaal, String opplevelse) {
+    	this.treningsokt = treningsokt;
     	this.treningsformaal = treningsformaal;
     	this.opplevelse = opplevelse;
     }
     
-    public Notat(int id,  int treningsøkt, String treningsformaal, String opplevelse) {
+    public Notat(int id,  int treningsokt, String treningsformaal, String opplevelse) {
     	this.id = id;
-    	this.treningsokt = treningsøkt;
+    	this.treningsokt = treningsokt;
     	this.treningsformaal = treningsformaal;
     	this.opplevelse = opplevelse;
     }

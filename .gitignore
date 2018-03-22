@@ -5,6 +5,9 @@
 
 # IntelliJ Metadata
 */.metadata/
+*/.idea/*
 */.idea/
+/.idea/*
+.idea/*
 *.iml
 /target/
