@@ -65,10 +65,10 @@ public class Queries extends Database {
 				String dato = results.getString("dato");
 				int varighet = results.getInt("varighet");
 				String informasjon = results.getString("informasjon");
-				String personligForm = results.getString("personligForm");
-				String presentasjon = results.getString("presentasjon");
+				int personligForm = results.getInt("personligForm");
+				int prestasjon = results.getInt("presentasjon");
 
-				list.add(new Treningsokt(id, dato, varighet, informasjon, personligForm, presentasjon));
+				list.add(new Treningsokt(id, dato, varighet, informasjon, personligForm, prestasjon));
 			}
 
 		} catch (SQLException e) {
