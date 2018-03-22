@@ -144,6 +144,28 @@ public class Queries extends Database {
 		return list;
 
 	}
+	public ArrayList<Resultat> GetResultat() {
+		try (Connection connection = getConnection()) {
+			
+			ArrayList<Resultat> resultatListe = new ArrayList<>();
+			String query = "SELECT * FROM Resultat";
+			PreparedStatement getResultat = connection.prepareStatement(query);
+			ResultSet results = getResultat.executeQuery();
+			while(results.next()) {
+				int treningsokt = results.getInt("treningsokt");
+				int ovelse = results.getInt("ovelse");
+				int kilo = results.getInt("kilo");
+				int sett = results.getInt("sett");
+				int reps = results.getInt("reps");
+				String informasjon = results.getString("informasjon");
+				resultatListe.add(new Resultat(treningsokt, ovelse,kilo, sett, reps, informasjon));
+			}
+			return resultatListe;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
 
 
 }
