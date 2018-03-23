@@ -31,11 +31,6 @@ public class Database {
         db_user = username;
         db_pw = password;
 
-        try (Connection connection = getConnection()) {
-            System.out.println("Connection established!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     /**

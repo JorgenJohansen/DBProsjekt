@@ -169,7 +169,7 @@ public class Client {
                 retval += "Help page";
                 retval += "\nRegister new device/exercise/session";
                 retval += "\nDevice:   reg-dev-<name>-<description>";
-                retval += "\nExercise: reg-ex-<name>-<onDevice(true/false)>-<info/description>";
+                retval += "\nExercise: reg-ex-<name>-<onDevice(true/false)>-<info/description>-<deviceID (only if on device(>";
                 retval += "\nSession:  reg-se-<time (format yyyy.mm.dd hh:mm:ss)>-<duration (format hh:mm)>-<info>-<form>-<feat>";
                 retval += "\n";
                 retval += "\nInfo about <n> last sessions";
@@ -193,6 +193,7 @@ public class Client {
                 retval += "\nq";
 
                 System.out.println(retval);
+                continue;
             }
 
             if(s.equals("exit") || s.equals("quit") ||s.equals("q")) {
@@ -221,21 +222,21 @@ public class Client {
         }
     }
 
-    //TODO
+    //Legger til en øvelse
     private void RegEx(String name, boolean app, String info, int device) {
         try {
             if(app) {
                 OvelsePaaApparat ov = new OvelsePaaApparat(device, name, info);
+                queries.create(ov);
             }
             else {
                 OvelseUtenApparat ov = new OvelseUtenApparat(name, info);
+                queries.create(ov);
             }
         }
         catch (Exception e) {
             System.out.println("Error in creating device");
         }
-
-        System.out.println("RegEx\n" + name + "\n" + app + "\n" + info);
     }
 
     //Legge til treningsøkter
