@@ -167,27 +167,27 @@ public class Client {
             if(s.equals("-h") || s.equals("help")) {
                 String retval = "";
                 retval += "Help page";
-                retval += "\nRegister new device/exercise/session";
-                retval += "\nDevice:   reg-dev-<name>-<description>";
-                retval += "\nExercise: reg-ex-<name>-<onDevice(true/false)>-<info/description>-<deviceID (only if on device(>";
-                retval += "\nSession:  reg-se-<time (format yyyy.mm.dd hh:mm:ss)>-<duration (format hh:mm)>-<info>-<form>-<feat>";
+                retval += "\nRegistere ny apparat/øvelse/treningsøkt";
+                retval += "\nApparat:     reg-dev-<name>-<description>";
+                retval += "\nØvelse:      reg-ex-<name>-<onDevice(true/false)>-<info/description>-<deviceID (only if on device(>";
+                retval += "\nTreningsøkt: reg-se-<time (format yyyy.mm.dd hh:mm:ss)>-<duration (format hh:mm)>-<info>-<form>-<feat>";
                 retval += "\n";
-                retval += "\nInfo about <n> last sessions";
+                retval += "\nInfo om <n> siste treningsøkter";
                 retval += "\ninfo-<n>";
                 retval += "\n";
-                retval += "\nSee results between <startTime(format yyyy.mm.dd hh:mm:ss)> and <endTime(format yyyy.mm.dd hh:mm:ss)>";
-                retval += "\nlog-<startTime>-<endTime>";
+                retval += "\nSe resultater mellom <start tid(format yyyy.mm.dd hh:mm:ss)> og <slutt tid(format yyyy.mm.dd hh:mm:ss)>";
+                retval += "\nlog-<start tid>-<slutt tid>";
                 retval += "\n";
-                retval += "\nCreate excercise groups";
-                retval += "\ncreate-<name>";
+                retval += "\nLag ny øvelsesgtuppe";
+                retval += "\ncreate-<navn>";
                 retval += "\n";
-                retval += "\nFind excercises in group with id <id>";
+                retval += "\nFinn øvelser i øvelsegruppe med id <id>";
                 retval += "\nfind-<id>";
                 retval += "\n";
-                retval += "\nCompare two results";
-                retval += "\ncompare-<excercise id 1>-<session id 1>-<exercise id 2>-<session id 2>";
+                retval += "\nsammenligh to øvelser";
+                retval += "\ncompare-<øvelse id 1>-<treningsøkt id 1>-<øvelse id 2>-<treningsøkt id 2>";
                 retval += "\n";
-                retval += "\nExit";
+                retval += "\nAvslutt";
                 retval += "\nexit";
                 retval += "\nquit";
                 retval += "\nq";
@@ -241,6 +241,10 @@ public class Client {
 
     //Legge til treningsøkter
     private void RegSession(String date, int duration, String info, int pForm, int feat) {
+        if(pForm < 1 || pForm > 10 || feat < 1 || feat > 10) {
+            System.out.println("Personlog form eller prestasjon var ikke mellom 1 og 10");
+            return;
+        }
         try {
             Treningsokt okt = new Treningsokt(date, duration, info, pForm, feat);
             db.create(okt);
@@ -336,6 +340,14 @@ public class Client {
             res2 = queries.GetResultat(exID2, seID2);
         } catch (SQLException e) {
             e.printStackTrace();
+            return;
+        }
+        if(res1 == null) {
+            System.out.println("Første resultat ble ikke funnet");
+            return;
+        }
+        if(res2 == null) {
+            System.out.println("Andre resultat ble ikke funnet");
             return;
         }
 

@@ -8,6 +8,8 @@ import java.lang.reflect.*;
  */
 public class Database {
 
+    private static boolean VERBOSE = false;
+
     private String db_URI;
     private String db_user;
     private String db_pw;
@@ -42,6 +44,7 @@ public class Database {
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(db_URI, db_user, db_pw);
+            if (VERBOSE) System.out.println("Connection established to " + db_URI);
         } catch (SQLException e){
             e.printStackTrace();
         }
@@ -74,7 +77,8 @@ public class Database {
         queryString = Util.stripTrailingComma(queryString);
         queryString += ")";
 
-        System.out.println("QUERY: " +queryString);
+        if (VERBOSE) System.out.println("QUERY: " +queryString);
+
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS)) {
@@ -108,7 +112,7 @@ public class Database {
 
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {
-                System.out.println("Insertion complete.");
+                if (VERBOSE) System.out.println("Insertion complete.");
                 return generatedKeys.getInt(1);
             }
             else {
@@ -150,7 +154,7 @@ public class Database {
         queryString += ") ";
         queryString += " WHERE id = ?";
 
-        System.out.println("QUERY: " +queryString);
+        if (VERBOSE) System.out.println("QUERY: " +queryString);
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(queryString)) {
@@ -184,7 +188,7 @@ public class Database {
             preparedStatement.setInt(fields.length, table.getId());
 
             preparedStatement.executeUpdate();
-            System.out.println("Update complete.");
+            if (VERBOSE) System.out.println("Update complete.");
         } catch (SQLException e) {
             throw e;
         }
@@ -214,7 +218,7 @@ public class Database {
             preparedStatement.setInt(1, table.getId());
 
             preparedStatement.executeUpdate();
-            System.out.println("Delete complete.");
+            if (VERBOSE) System.out.println("Delete complete.");
         } catch (SQLException e) {
             throw e;
         }
