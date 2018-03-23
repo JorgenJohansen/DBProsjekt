@@ -43,7 +43,7 @@ public class Client {
 
                     case("ex"):
                         try {
-                            client.RegEx(params[1], Boolean.parseBoolean(params[2]), params[3]);
+                            //client.RegEx(params[1], Boolean.parseBoolean(params[2]), params[3]);
                         }
                         catch (Exception e) {
                             System.out.println("Command not recognised");
@@ -213,14 +213,30 @@ public class Client {
         }
     }
 
-    //TODO
-    private void RegEx(String name, boolean app, String info) {
-        System.out.println("RegEx\n" + name + "\n" + app + "\n" + info);
-    }
+//    //TODO
+//    private void RegEx(String name, boolean app, String info, int device) {
+//        if(app) {
+//            OvelsePaaApparat ov = new OvelsePaaApparat(device, name, info);
+//            try {
+//                db.create(ov);
+//            }
+//            catch (Exception e) {
+//                System.out.println("Error in creating device");
+//            }
+//        }
+//
+//        System.out.println("RegEx\n" + name + "\n" + app + "\n" + info);
+//    }
 
-    //TODO
+    //Legge til treningsøkter
     private void RegSession(String date, int duration, String info, int pForm, int feat) {
-        System.out.println("RegSession\n" + date + "\n" + duration + "\n" + info + "\n" + pForm + "\n" + feat);
+        try {
+            Treningsokt okt = new Treningsokt(date, duration, info, pForm, feat);
+            db.create(okt);
+        }
+        catch (Exception e) {
+            System.out.println("Something went wrong when trying to insert session");
+        }
     }
 
     //Prints information about n last sessions
@@ -278,11 +294,17 @@ public class Client {
         }
     }
 
-    //TODO
+    //Lage Øvelsesgruppe
     private void Create(String name) {
-        System.out.println("Create\n" + name);
+        OvelsesGruppe ovg = new OvelsesGruppe(name);
+        try {
+            db.create(ovg);
+        }
+        catch (Exception e) {
+            System.out.println("Error in creating excercise group");
+        }
     }
-    //TODO
+    //Finne ovelse via id på øvelsesgruppe
     private void Find(int id) {
         System.out.println("Find\n" + id);
         ArrayList<String> results = queries.getOvelseFromOvelsesGruppe(id);
