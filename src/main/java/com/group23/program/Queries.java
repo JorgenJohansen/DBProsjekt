@@ -164,14 +164,16 @@ public class Queries extends Database {
 	public ArrayList<OvelseUtenApparat> getOvelseUtenApparat() {
 		try (Connection connection = getConnection()) {
 			ArrayList<OvelseUtenApparat> list = new ArrayList<>();
-			String query = "SELECT * FROM Notat";
+			String query = "SELECT c.ovelseID as ovelseID, c.beskrivelse as beskrivelse, p.navn as navn" +
+                    "FROM OvelseUtenApparat c " +
+                    "INNER JOIN Ovelse p ON c.ovelseID = p.id";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			ResultSet results = preparedStatement.executeQuery();
 			while(results.next()) {
-				int ovelseID = results.getInt("ovelseID");
-				String beskrivelse = results.getString("beskrivelse");
-				String opplevelse = results.getString("opplevelse");
-				list.add(new OvelseUtenApparat(ovelseID, beskrivelse));
+                int ovelseID = results.getInt("ovelseID");
+                String navn = results.getString("navn");
+                String beskrivelse = results.getString("beskrivelse");
+				list.add(new OvelseUtenApparat(ovelseID, navn, beskrivelse));
 			}
 			return list;
 		} catch (Exception e) {
@@ -180,17 +182,19 @@ public class Queries extends Database {
 		return null;
 	}
 	
-	public ArrayList<OvelsePaaApparat> getOvelsePÂApparat() {
+	public ArrayList<OvelsePaaApparat> getOvelsePaaApparat() {
 		try (Connection connection = getConnection()) {
 			ArrayList<OvelsePaaApparat> list = new ArrayList<>();
-			String query = "SELECT * FROM Notat";
+            String query = "SELECT c.ovelseID as ovelseID, c.bruksinformasjon as bruksinformasjon, p.navn as navn" +
+                    "FROM OvelsePaaApparat c " +
+                    "INNER JOIN Ovelse p ON c.ovelseID = p.id";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
 			ResultSet results = preparedStatement.executeQuery();
 			while(results.next()) {
 				int ovelseID = results.getInt("ovelseID");
 				String navn = results.getString("navn");
-				String beskrivelse = results.getString("beskrivelse");
-				list.add(new OvelsePaaApparat(ovelseID, navn, beskrivelse));
+				String bruksinformasjon = results.getString("bruksinformasjon");
+				list.add(new OvelsePaaApparat(ovelseID, navn, bruksinformasjon));
 			}
 			return list;
 		} catch (Exception e) {

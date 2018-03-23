@@ -17,22 +17,31 @@ public class dbTest extends TestCase  {
         Queries db = new Queries(db_addr, db_user,db_pw);
     }
 
-//    public void testApparat() throws SQLException {
-//        Queries db = new Queries(db_addr, db_user,db_pw);
-//
-//        Apparat a = new Apparat("TEST: Navn_på_apparat", "TEST: beskrivelse_på_apparat");
-//        int id = db.create(a);
-//        ArrayList<Apparat> as = db.getApparat();
-//        for (Apparat e : as) {
-//            System.out.println(e.navn);
-//        }
-//    }
-
     public void testTreningsOkt() throws SQLException {
         Queries db = new Queries(db_addr, db_user,db_pw);
 
         Treningsokt tr = new Treningsokt("2017:03:17", 3, "informasjon", 1, 1);
 
         int id = db.create(tr);
+    }
+
+    public void testOvelsePaaApparat() throws SQLException {
+        Queries db = new Queries(db_addr, db_user,db_pw);
+
+        ArrayList<OvelsePaaApparat> as = db.getOvelsePaaApparat();
+
+        for (OvelsePaaApparat a : as) {
+            System.out.println(a.navn);
+        }
+    }
+
+    public void testOvelseUtenApparat() throws SQLException {
+        Queries db = new Queries(db_addr, db_user,db_pw);
+
+        ArrayList<OvelseUtenApparat> as = db.getOvelseUtenApparat();
+
+        for (OvelseUtenApparat a : as) {
+            System.out.println(a.navn);
+        }
     }
 }
