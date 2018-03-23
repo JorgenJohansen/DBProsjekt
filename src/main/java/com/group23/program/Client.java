@@ -43,7 +43,14 @@ public class Client {
 
                     case("ex"):
                         try {
-                            //client.RegEx(params[1], Boolean.parseBoolean(params[2]), params[3]);
+                            boolean dev = Boolean.parseBoolean(params[2]);
+
+                            if(dev) {
+                                client.RegEx(params[1], true, params[3], Integer.parseInt(params[4]));
+                            }
+                            else {
+                                client.RegEx(params[1], false, params[3], 0);
+                            }
                         }
                         catch (Exception e) {
                             System.out.println("Command not recognised");
@@ -213,20 +220,22 @@ public class Client {
         }
     }
 
-//    //TODO
-//    private void RegEx(String name, boolean app, String info, int device) {
-//        if(app) {
-//            OvelsePaaApparat ov = new OvelsePaaApparat(device, name, info);
-//            try {
-//                db.create(ov);
-//            }
-//            catch (Exception e) {
-//                System.out.println("Error in creating device");
-//            }
-//        }
-//
-//        System.out.println("RegEx\n" + name + "\n" + app + "\n" + info);
-//    }
+    //TODO
+    private void RegEx(String name, boolean app, String info, int device) {
+        try {
+            if(app) {
+                OvelsePaaApparat ov = new OvelsePaaApparat(device, name, info);
+            }
+            else {
+                OvelseUtenApparat ov = new OvelseUtenApparat(name, info);
+            }
+        }
+        catch (Exception e) {
+            System.out.println("Error in creating device");
+        }
+
+        System.out.println("RegEx\n" + name + "\n" + app + "\n" + info);
+    }
 
     //Legge til treningsøkter
     private void RegSession(String date, int duration, String info, int pForm, int feat) {
