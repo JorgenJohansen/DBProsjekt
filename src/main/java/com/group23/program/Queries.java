@@ -68,7 +68,7 @@ public class Queries extends Database {
 	 * Generer en komplett liste av alle resultat i databasen
 	 * @return liste over resultat
 	 */
-	public Resultat GetResultat(int EID, int SID) {
+	public Resultat GetResultat(int EID, int SID) throws SQLException {
 		try (Connection connection = getConnection()) {
 			
 			ArrayList<Resultat> resultatListe = new ArrayList<>();
@@ -80,7 +80,7 @@ public class Queries extends Database {
 			getResultat.setInt(2, SID);
 
 			ResultSet results = getResultat.executeQuery();
-			while(results.next()) {
+			if(results.next()) {
 				int treningsokt = results.getInt("treningsokt");
 				int ovelse = results.getInt("ovelse");
 				int kilo = results.getInt("kilo");
@@ -88,11 +88,12 @@ public class Queries extends Database {
 				int reps = results.getInt("reps");
 				String informasjon = results.getString("informasjon");
 				return new Resultat(treningsokt, ovelse,kilo, sett, reps, informasjon);
-			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			} else {
+			    return null;
+            }
+		} catch (SQLException e) {
+			throw e;
 		}
-		return null;
 	}
 
 	/**
@@ -140,7 +141,7 @@ public class Queries extends Database {
 	 * @param ovelsesGruppeID er ID til ovelsesGruppe
 	 * @return en liste med navn pÃ¥ ovelser
 	 */
-	public ArrayList<String> getOvelseFromOvelsesGruppe(int ovelsesGruppeID) {
+	public ArrayList<String> getOvelseFromOvelsesGruppe(int ovelsesGruppeID) throws SQLException  {
 		try (Connection connection = getConnection()) {
 			ArrayList<String> list = new ArrayList<>();
 			String query = "SELECT * " + 
@@ -155,16 +156,15 @@ public class Queries extends Database {
 				list.add(navn);
 			}
 			return list;
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+		} catch (SQLException e) {
+			throw e;
 		}
-		return null;
 	}
 	
-	public ArrayList<OvelseUtenApparat> getOvelseUtenApparat() {
+	public ArrayList<OvelseUtenApparat> getOvelseUtenApparat() throws SQLException  {
 		try (Connection connection = getConnection()) {
 			ArrayList<OvelseUtenApparat> list = new ArrayList<>();
-			String query = "SELECT c.ovelseID as ovelseID, c.beskrivelse as beskrivelse, p.navn as navn" +
+			String query = "SELECT c.ovelseID as ovelseID, c.beskrivelse as beskrivelse, p.navn as navn " +
                     "FROM OvelseUtenApparat c " +
                     "INNER JOIN Ovelse p ON c.ovelseID = p.id";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -176,16 +176,16 @@ public class Queries extends Database {
 				list.add(new OvelseUtenApparat(ovelseID, navn, beskrivelse));
 			}
 			return list;
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+		} catch (SQLException e) {
+			throw e;
 		}
-		return null;
 	}
 	
-	public ArrayList<OvelsePaaApparat> getOvelsePaaApparat() {
+	public ArrayList<OvelsePaaApparat> getOvelsePaaApparat() throws SQLException  {
 		try (Connection connection = getConnection()) {
 			ArrayList<OvelsePaaApparat> list = new ArrayList<>();
-            String query = "SELECT c.ovelseID as ovelseID, c.bruksinformasjon as bruksinformasjon, p.navn as navn" +
+            String query = "SELECT c.ovelseID as ovelseID, c.apparat as apparat, " +
+                    "c.bruksinformasjon as bruksinformasjon, p.navn as navn " +
                     "FROM OvelsePaaApparat c " +
                     "INNER JOIN Ovelse p ON c.ovelseID = p.id";
 			PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -193,48 +193,103 @@ public class Queries extends Database {
 			while(results.next()) {
 				int ovelseID = results.getInt("ovelseID");
 				String navn = results.getString("navn");
+				int apparat = results.getInt("apparat");
 				String bruksinformasjon = results.getString("bruksinformasjon");
-				list.add(new OvelsePaaApparat(ovelseID, navn, bruksinformasjon));
+				list.add(new OvelsePaaApparat(ovelseID, apparat, navn, bruksinformasjon));
 			}
 			return list;
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+		} catch (SQLException e) {
+			throw e;
 		}
-		return null;
 	}
 	
 	//Setters
 	/**
 	 * Denne metoden legger inn setter data i ovelsePaaApparat tabellen
-	 * @param ovelseID er id på ovelse
-	 * @param apparat er en id på apparat
+	 * @param ovelseID er id pï¿½ ovelse
+	 * @param apparat er en id pï¿½ apparat
 	 * @param bruksinformasjon er en tekstslig beskrivelse
 	 */
-	public void setOvelsePaaApparat(int ovelseID, int apparat, String bruksinformasjon) {
+	public int create(OvelsePaaApparat row) throws SQLException  {
 		try (Connection connection = getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO OvelsePaaApparat(ovelseID, apparat, bruksinformasjon) "
-					+ "VALUES(?,?,?)");
-			stmt.setInt(1, ovelseID);
-			stmt.setInt(2, apparat);
-			stmt.setString(3, bruksinformasjon);
-			stmt.executeUpdate();
+
+            connection.setAutoCommit(false);
+
+            String query_parent = "INSERT INTO Ovelse(navn) VALUES(?)";
+
+            String query_child = "INSERT INTO OvelsePaaApparat(ovelseID, apparat, bruksinformasjon) VALUES(?,?,?)";
+
+            PreparedStatement prpstmt_parent = connection.prepareStatement(query_parent, Statement.RETURN_GENERATED_KEYS);
+            prpstmt_parent.setString(1, row.navn);
+            prpstmt_parent.executeUpdate();
+
+            int ovelseID;
+            ResultSet generatedKeys = prpstmt_parent.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                System.out.println("Insertion complete.");
+                ovelseID = generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Unable to insert into table");
+            }
+
+			PreparedStatement prpstmt_child = connection.prepareStatement(query_child);
+            prpstmt_child.setInt(1, ovelseID);
+            prpstmt_child.setInt(2, row.apparat);
+            prpstmt_child.setString(3, row.bruksinformasjon);
+            prpstmt_child.executeUpdate();
+
+            connection.commit();
+
+            connection.setAutoCommit(true);
+
+            return ovelseID;
 		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			throw e;
 		}
 	}
+
 	/**
 	 * Denne metoden legger inn data i ovelseUtenApparat tabellen
-	 * @param ovelseID er id på ovelse
+	 * @param ovelseID er id pï¿½ ovelse
 	 * @param beskrivelse er en tekstlig beskrivelse
 	 */
-	public void setOvelseUtenApparat(int ovelseID, String beskrivelse) {
-		try (Connection connection = getConnection()) {
-			PreparedStatement stmt = connection.prepareStatement("INSERT INTO OvelseUtenApparat(ovelseID, beskrivelse) VALUES(?,?)");
-			stmt.setInt(1, ovelseID);
-			stmt.setString(2, beskrivelse);
-			stmt.executeUpdate();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
+	public int create(OvelseUtenApparat row) throws SQLException  {
+        try (Connection connection = getConnection()) {
+
+            connection.setAutoCommit(false);
+
+            String query_parent = "INSERT INTO Ovelse(navn) VALUES(?)";
+
+            String query_child = "INSERT INTO OvelseUtenApparat(ovelseID, beskrivelse) VALUES(?,?)";
+
+            PreparedStatement prpstmt_parent = connection.prepareStatement(query_parent, Statement.RETURN_GENERATED_KEYS);
+            prpstmt_parent.setString(1, row.navn);
+            prpstmt_parent.executeUpdate();
+
+            int ovelseID;
+            ResultSet generatedKeys = prpstmt_parent.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                System.out.println("Insertion complete.");
+                ovelseID = generatedKeys.getInt(1);
+            }
+            else {
+                throw new SQLException("Unable to insert into table");
+            }
+
+            PreparedStatement prpstmt_child = connection.prepareStatement(query_child);
+            prpstmt_child.setInt(1, ovelseID);
+            prpstmt_child.setString(2, row.beskrivelse);
+            prpstmt_child.executeUpdate();
+
+            connection.commit();
+
+            connection.setAutoCommit(true);
+
+            return ovelseID;
+        } catch (Exception e) {
+            throw e;
+        }
+
 	}
 }

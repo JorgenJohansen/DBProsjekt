@@ -2,6 +2,7 @@ package com.group23.program;
 
 import javafx.util.Pair;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -316,14 +317,26 @@ public class Client {
     //Finne ovelse via id på øvelsesgruppe
     private void Find(int id) {
         System.out.println("Find\n" + id);
-        ArrayList<String> results = queries.getOvelseFromOvelsesGruppe(id);
+        ArrayList<String> results = null;
+        try {
+            results = queries.getOvelseFromOvelsesGruppe(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         System.out.println(results);
     }
 
     //Sammenligner to resultater
     private void Compare(int exID1, int seID1, int exID2, int seID2) {
-        Resultat res1 = queries.GetResultat(exID1, seID1);
-        Resultat res2 = queries.GetResultat(exID2, seID2);
+        Resultat res1 = null;
+        Resultat res2 = null;
+        try {
+            res1 = queries.GetResultat(exID1, seID1);
+            res2 = queries.GetResultat(exID2, seID2);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return;
+        }
 
         System.out.println("Treningsokt 1: "  + res1.treningsokt);
         System.out.println("Treningsokt 2: "  + res2.treningsokt);

@@ -28,6 +28,14 @@ public class dbTest extends TestCase  {
     public void testOvelsePaaApparat() throws SQLException {
         Queries db = new Queries(db_addr, db_user,db_pw);
 
+        Apparat ap = new Apparat("ApparatNavn", "ApparatBeskrivelse");
+
+        int apparat_id = db.create(ap);
+
+        OvelsePaaApparat o = new OvelsePaaApparat(apparat_id, "OvelseNavn", "Beskrivelse :)");
+
+        db.create(o);
+
         ArrayList<OvelsePaaApparat> as = db.getOvelsePaaApparat();
 
         for (OvelsePaaApparat a : as) {
@@ -35,13 +43,19 @@ public class dbTest extends TestCase  {
         }
     }
 
+
     public void testOvelseUtenApparat() throws SQLException {
         Queries db = new Queries(db_addr, db_user,db_pw);
+
+        OvelseUtenApparat o = new OvelseUtenApparat("OvelseNavn2", "Øvelse uten apparat");
+
+        db.create(o);
 
         ArrayList<OvelseUtenApparat> as = db.getOvelseUtenApparat();
 
         for (OvelseUtenApparat a : as) {
-            System.out.println(a.navn);
+            System.out.println(a.navn + a.beskrivelse);
         }
     }
+
 }
