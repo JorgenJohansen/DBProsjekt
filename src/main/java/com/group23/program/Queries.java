@@ -198,4 +198,39 @@ public class Queries extends Database {
 		}
 		return null;
 	}
+	
+	//Setters
+	/**
+	 * Denne metoden legger inn setter data i ovelsePaaApparat tabellen
+	 * @param ovelseID er id på ovelse
+	 * @param apparat er en id på apparat
+	 * @param bruksinformasjon er en tekstslig beskrivelse
+	 */
+	public void setOvelsePaaApparat(int ovelseID, int apparat, String bruksinformasjon) {
+		try (Connection connection = getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO OvelsePaaApparat(ovelseID, apparat, bruksinformasjon) "
+					+ "VALUES(?,?,?)");
+			stmt.setInt(1, ovelseID);
+			stmt.setInt(2, apparat);
+			stmt.setString(3, bruksinformasjon);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
+	/**
+	 * Denne metoden legger inn data i ovelseUtenApparat tabellen
+	 * @param ovelseID er id på ovelse
+	 * @param beskrivelse er en tekstlig beskrivelse
+	 */
+	public void setOvelseUtenApparat(int ovelseID, String beskrivelse) {
+		try (Connection connection = getConnection()) {
+			PreparedStatement stmt = connection.prepareStatement("INSERT INTO OvelseUtenApparat(ovelseID, beskrivelse) VALUES(?,?)");
+			stmt.setInt(1, ovelseID);
+			stmt.setString(2, beskrivelse);
+			stmt.executeUpdate();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+	}
 }
