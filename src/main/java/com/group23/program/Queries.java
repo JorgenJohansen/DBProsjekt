@@ -160,4 +160,42 @@ public class Queries extends Database {
 		}
 		return null;
 	}
+	
+	public ArrayList<OvelseUtenApparat> getOvelseUtenApparat() {
+		try (Connection connection = getConnection()) {
+			ArrayList<OvelseUtenApparat> list = new ArrayList<>();
+			String query = "SELECT * FROM Notat";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			ResultSet results = preparedStatement.executeQuery();
+			while(results.next()) {
+				int ovelseID = results.getInt("ovelseID");
+				String beskrivelse = results.getString("beskrivelse");
+				String opplevelse = results.getString("opplevelse");
+				list.add(new OvelseUtenApparat(ovelseID, beskrivelse));
+			}
+			return list;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
+	
+	public ArrayList<OvelsePaaApparat> getOvelsePÂApparat() {
+		try (Connection connection = getConnection()) {
+			ArrayList<OvelsePaaApparat> list = new ArrayList<>();
+			String query = "SELECT * FROM Notat";
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			ResultSet results = preparedStatement.executeQuery();
+			while(results.next()) {
+				int ovelseID = results.getInt("ovelseID");
+				String navn = results.getString("navn");
+				String beskrivelse = results.getString("beskrivelse");
+				list.add(new OvelsePaaApparat(ovelseID, navn, beskrivelse));
+			}
+			return list;
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return null;
+	}
 }
